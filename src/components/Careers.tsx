@@ -33,40 +33,78 @@ const Careers = () => {
   ];
 
   const jobListings = [
-    {
-      title: "General Manager Assistant",
-      department: "Management",
-      location: "Phnom Penh",
-      description: `The General Manager Assistant is responsible for assisting the General Manager with daily operations and decision implementation, managing internal documentation and contract-related files. This position requires excellent Chinese-Khmer language skills, a legal academic background, and strong document management capabilities.
+        {
+          title: "General Manager Assistant",
+          department: "Management",
+          location: "Phnom Penh",
+          description: `The General Manager Assistant is responsible for assisting the General Manager with daily operations and decision implementation, managing internal documentation and contract-related files. This position requires excellent Chinese-Khmer language skills, a legal academic background, and strong document management capabilities.
 
-Key Responsibilities:
-1. Assist the General Manager with daily office tasks and ensure the effective implementation of instructions;
-2. Manage document archiving, meeting minutes, and departmental records to ensure information security and traceability;
-3. Coordinate interdepartmental collaboration and facilitate the smooth progress of cross-team projects;
-4. Receive, analyze, and coordinate tasks assigned by the General Manager, ensuring timely and efficient completion;
-5. Provide Chinese-Khmer translation support for the General Manager and other departments.
+      Key Responsibilities:
+      1. Assist the General Manager with daily office tasks and ensure the effective implementation of instructions;
+      2. Manage document archiving, meeting minutes, and departmental records to ensure information security and traceability;
+      3. Coordinate interdepartmental collaboration and facilitate the smooth progress of cross-team projects;
+      4. Receive, analyze, and coordinate tasks assigned by the General Manager, ensuring timely and efficient completion;
+      5. Provide Chinese-Khmer translation support for the General Manager and other departments.
 
-Job Requirements:
-1. Bachelor’s degree or above in Law or a related field, with solid legal knowledge;
-2. Proficient in Chinese and Khmer; proficiency in English is an advantage;
-3. Experience in contract review, legal document handling, and related administrative work is preferred;
-4. Strong document management, communication, and execution skills;
-5. High professional ethics, strong sense of responsibility, and meticulous work attitude;
-6. Proficient in office software and document management tools.`,
-    },
-    {
-      title: "Marketing & Sales Supervisor",
-      department: "Management",
-      location: "Phnom Penh",
-      description: `The Marketing & Sales Supervisor is responsible for leading marketing campaigns and sales teams... [full description here]`,
-    },
-    {
-      title: "Content Creator / Producer",
-      department: "Management",
-      location: "Phnom Penh",
-      description: `The Content Creator / Producer is responsible for creating engaging content for multiple platforms... [full description here]`,
-    },
-  ];
+      Job Requirements:
+      1. Bachelor’s degree or above in Law or a related field, with solid legal knowledge;
+      2. Proficient in Chinese and Khmer; proficiency in English is an advantage;
+      3. Experience in contract review, legal document handling, and related administrative work is preferred;
+      4. Strong document management, communication, and execution skills;
+      5. High professional ethics, strong sense of responsibility, and meticulous work attitude;
+      6. Proficient in office software and document management tools.`,
+        },
+        {
+          title: "Marketing & Sales Supervisor",
+          department: "Management",
+          location: "Phnom Penh",
+          description: `The General Manager Assistant is responsible for assisting the General Manager with daily operations and decision implementation, managing internal documentation and contract-related files. This position requires excellent Chinese-Khmer language skills, a legal academic background, and strong document management capabilities.
+
+      Key Responsibilities:
+      1. Identify potential clients through various channels, update client prospects and plans, conduct visits, and drive successful partnerships.
+      2. Maintain and enhance relationships with existing clients, ensuring high client satisfaction through regular follow-ups and proactive issue resolution.
+      3. Participate in business negotiations with key clients and partners, oversee contract implementation, and ensure timely and high-quality service delivery.
+      4. Lead and supervise the marketing and sales team to ensure monthly sales targets are achieved, including assigning individual responsibilities, setting clear KPIs, and providing necessary support to the team.
+      5. Arrange and manage team tasks effectively to secure continuous achievement of monthly signing targets.
+      6. Coach and mentor team members, conduct regular performance evaluations, and enhance team capabilities and accountability.
+      7. Plan and execute online and offline marketing campaigns, business development, brand promotion, and event execution.
+      8. Seek and secure potential sponsorship opportunities for company or client events activities, building strategic partnerships with sponsors.
+      9. Develop and maintain strong cooperative relationships with both government and private sector partners to support business development, brand promotion, and event execution.
+      10. Collaborate with external partners such as media agencies, platforms, and influencers to implement integrated marketing strategies.
+      11. Coordinate with Khmer and Chinese content production, operations, and design teams to ensure smooth progress of marketing and sales projects.
+      12. Analyze sales performance, collect market and client feedback, report progress with to management and provide optimization suggestions.
+      13. Update weekly sales reports, client development progress, event summaries, and client feedback.
+
+      Job Requirements:
+      1. Bachelor’s degree or above in Marketing, Business Administration, Media, Public Relations, or related fields is preferred.
+      2. Strong skills in both written and spoken Chinese and English are required.
+      3. Proven leadership skills with the ability to lead teams to achieve sales and marketing KPIs.
+      4. Minimum 3 years of relevant experience in sales or marketing promotion, with a background in media advertising or digital marketing preferred.
+      5. Experience in sponsorship development and collaboration with government or private enterprises is a plus. 
+      6. Strong communication abilities to build and maintain positive relationships with clients, teams, and partners.
+      7. Ability to maintain high performance and complete tasks on time in a high-pressure environment.`,
+        },
+        {
+          title: "Content Creator / Producer",
+          department: "Management",
+          location: "Phnom Penh",
+          description: `The General Manager Assistant is responsible for assisting the General Manager with daily operations and decision implementation, managing internal documentation and contract-related files. This position requires excellent Chinese-Khmer language skills, a legal academic background, and strong document management capabilities.
+
+      Key Responsibilities:
+      1. Serve as the on-camera host for interviews, programs, and special features, presenting professionally and confidently.
+      2. Participate in content planning, develop program outlines, and prepare interview questions.
+      3. Conduct interviews with guests from various backgrounds, guiding conversations to deliver informative and engaging stories.
+      4. Collaborate with the production team to ensure smooth filming and quality output.
+      5. Stay aware of trending topics and audience interests to inspire fresh, relevant content ideas.
+
+      Job Requirements:
+      1. Bachelor’s degree or above preferred; background in journalism, media, performing arts, or related fields is a plus.
+      2. Native-level fluency in Khmer; other language skills (Chinese, English) are an advantage.
+      3. Strong on-camera presence, clear articulation, and engaging delivery style.
+      4. Excellent interpersonal and communication skills; able to interact confidently with diverse guests.
+      5. Creative mindset, adaptability, and the ability to perform well under pressure.`,
+        },
+];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

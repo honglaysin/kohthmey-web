@@ -28,7 +28,7 @@ const HeroSection = ({
     text: "Join Our Team",
     href: "/Careers",
   },
-  backgroundImage = "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1920&q=80",
+  backgroundImage = "/logo/produce.jpg",
 }: HeroSectionProps) => {
   return (
     <section className="relative h-screen w-full bg-background overflow-hidden">
@@ -101,35 +101,36 @@ const HeroSection = ({
 
       {/* Scroll Down Indicator */}
       <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{
-          duration: 1,
-          delay: 1.2,
-          repeat: Infinity,
-          repeatType: "reverse",
-          repeatDelay: 0.2,
-        }}
-      >
-        <div className="flex flex-col items-center">
-          <span className="text-white text-sm mb-2">Scroll Down</span>
-          <svg
-            className="w-6 h-6 text-white animate-bounce"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 14l-7 7m0 0l-7-7m7 7V3"
-            />
-          </svg>
-        </div>
-      </motion.div>
+  className="absolute inset-x-0 bottom-4 flex justify-center z-10 sm:bottom-8"
+  initial={{ opacity: 0, y: -10 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{
+    duration: 1,
+    delay: 1.2,
+    repeat: Infinity,
+    repeatType: "reverse",
+    repeatDelay: 0.2,
+  }}
+>
+  <div className="flex flex-col items-center">
+    <span className="text-white text-sm mb-2">Scroll Down</span>
+    <svg
+      className="w-6 h-6 text-white animate-bounce"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M19 14l-7 7m0 0l-7-7m7 7V3"
+      />
+    </svg>
+  </div>
+</motion.div>
+
     </section>
   );
 };

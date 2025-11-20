@@ -1,0 +1,16 @@
+name: Keep Render Alive
+
+on:
+  workflow_dispatch:       # allows manual trigger in the Actions tab
+  schedule:
+    - cron: "*/5 * * * *"  # run every 5 minutes
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Render API
+        run: |
+          curl -I https://kohthmey-strapi-api.onrender.com/api/jobs || true
+          curl -s -o /dev/null -w "%{http_code}" https://kohthmey-strapi-api.onrender.com/api/applications
+          curl -s -o /dev/null -w "%{http_code}" https://kohthmey-strapi-api.onrender.com/api/contact-messages

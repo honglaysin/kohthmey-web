@@ -156,7 +156,7 @@ const Home = () => {
             </div>
             <div className="relative">
               <img
-                src="/images/img6.jpg"
+                src="/images/img7.jpg"
                 alt="Team collaboration"
                 className="rounded-lg shadow-lg w-full h-auto"
               />

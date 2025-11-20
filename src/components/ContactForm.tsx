@@ -10,21 +10,11 @@ import {
   AlertCircle,
   CheckCircle2,
   Send,
-  MapPin,
   Phone,
   Mail,
-  Facebook,
-  Linkedin,
-  Youtube,
 } from "lucide-react";
 import { Separator } from "./ui/separator";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-} from "./ui/card";
+import { Card } from "./ui/card";
 
 interface FormData {
   name: string;
@@ -74,10 +64,48 @@ const ContactUs = () => {
     setIsSubmitting(true);
     setSubmitStatus(null);
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      setFormData({ name: "", email: "", subject: "", message: "" });
-      setSubmitStatus("success");
+      // wrap subject and message in Strapi rich text blocks
+      const subjectBlocks = [
+        {
+          type: "paragraph",
+          children: [{ type: "text", text: formData.subject }],
+        },
+      ];
+      const messageBlocks = [
+        {
+          type: "paragraph",
+          children: [{ type: "text", text: formData.message }],
+        },
+      ];
+
+      const res = await fetch(
+        "https://kohthmey-strapi-api.onrender.com/api/contact-messages",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            data: {
+              name: formData.name,
+              email: formData.email,
+              subject: subjectBlocks,
+              message: messageBlocks,
+            },
+          }),
+        }
+      );
+
+      const result = await res.json();
+      if (!res.ok) {
+        console.error("Submission error:", result);
+        setSubmitStatus("error");
+      } else {
+        setFormData({ name: "", email: "", subject: "", message: "" });
+        setSubmitStatus("success");
+      }
     } catch (error) {
+      console.error("Network error:", error);
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
@@ -86,10 +114,8 @@ const ContactUs = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Header */}
       <Header />
 
-      {/* Hero Section */}
       <section className="relative h-72 bg-gradient-to-r from-[#1E40AF] to-[#1E3A8A] text-white flex items-center justify-center">
         <div className="text-center px-4">
           <h1 className="text-4xl md:text-5xl font-bold mb-2">Contact Us</h1>
@@ -100,10 +126,8 @@ const ContactUs = () => {
         </div>
       </section>
 
-      {/* Contact Form Section */}
       <section className="py-20 px-4 md:px-8 lg:px-16 bg-gray-50">
         <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
-          {/* Form */}
           <div>
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
               Send us a Message
@@ -133,9 +157,7 @@ const ContactUs = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <Label htmlFor="name" className="text-gray-700 font-medium">
-                    Name *
-                  </Label>
+                  <Label htmlFor="name">Name *</Label>
                   <Input
                     id="name"
                     name="name"
@@ -154,9 +176,7 @@ const ContactUs = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="email" className="text-gray-700 font-medium">
-                    Email *
-                  </Label>
+                  <Label htmlFor="email">Email *</Label>
                   <Input
                     id="email"
                     name="email"
@@ -177,9 +197,7 @@ const ContactUs = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="subject" className="text-gray-700 font-medium">
-                  Subject *
-                </Label>
+                <Label htmlFor="subject">Subject *</Label>
                 <Input
                   id="subject"
                   name="subject"
@@ -198,9 +216,7 @@ const ContactUs = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="message" className="text-gray-700 font-medium">
-                  Message *
-                </Label>
+                <Label htmlFor="message">Message *</Label>
                 <Textarea
                   id="message"
                   name="message"
@@ -237,60 +253,64 @@ const ContactUs = () => {
               </Button>
             </form>
           </div>
-        {/* Contact Categories */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-          {[
-            {
-              title: "Customer Service",
-              email: "support@tnaot.com",
-              phone: "(+855) 023 922 788",
-            },
-            {
-              title: "Advertising",
-              email: "chenghuyleng@kohthmey.net",
-              phone: "(+855) 010 688 511",
-            },
-            {
-              title: "Business",
-              email: "chenghuyleng@kohthmey.net",
-              phone: "(+855) 010 688 511",
-            },
-            {
-              title: "Careers",
-              email: "hr@kohthmey.net",
-              phone: "Telegram : 015 856 322 (KHM&ENG) / 061 538 022 (CHN)",
-            },
-          ].map((contact) => (
-            <Card key={contact.title} className="p-6 shadow-md hover:shadow-lg transition-shadow">
-              <h4 className="text-lg font-bold text-gray-900 mb-2">{contact.title}</h4>
-              <p className="text-gray-700 flex items-center">
-                <Mail size={16} className="mr-2 text-[#1E40AF]" />
-                {contact.email}
-              </p>
-              <p className="text-gray-700 flex items-center mt-1">
-                <Phone size={16} className="mr-2 text-[#1E40AF]" />
-                {contact.phone}
-              </p>
-            </Card>
-          ))}
-        </div>
+
+          {/* Contact Categories */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+            {[
+              {
+                title: "Customer Service",
+                email: "support@tnaot.com",
+                phone: "(+855) 023 922 788",
+              },
+              {
+                title: "Advertising",
+                email: "chenghuyleng@kohthmey.net",
+                phone: "(+855) 010 688 511",
+              },
+              {
+                title: "Business",
+                email: "chenghuyleng@kohthmey.net",
+                phone: "(+855) 010 688 511",
+              },
+              {
+                title: "Careers",
+                email: "hr@kohthmey.net",
+                phone: "Telegram : 015 856 322 (KHM&ENG) / 061 538 022 (CHN)",
+              },
+            ].map((contact) => (
+              <Card
+                key={contact.title}
+                className="p-6 shadow-md hover:shadow-lg transition-shadow"
+              >
+                <h4 className="text-lg font-bold text-gray-900 mb-2">
+                  {contact.title}
+                </h4>
+                <p className="text-gray-700 flex items-center">
+                  <Mail size={16} className="mr-2 text-[#1E40AF]" />
+                  {contact.email}
+                </p>
+                <p className="text-gray-700 flex items-center mt-1">
+                  <Phone size={16} className="mr-2 text-[#1E40AF]" />
+                  {contact.phone}
+                </p>
+              </Card>
+            ))}
+          </div>
         </div>
       </section>
+
       {/* Google Map */}
-    <div className="mt-12 w-full h-80 md:h-96 rounded-lg overflow-hidden shadow-md">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d565.9863493451629!2d104.92969849675013!3d11.544271094967597!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3109517a45a7bed5%3A0xd8a2ae37461e456b!2sKohthmey%20Technology%20Co%2C.Ltd!5e0!3m2!1skm!2skh!4v1756973984208!5m2!1skm!2skh"
-        className="w-full h-full border-0"
-        allowFullScreen
-        loading="lazy"
-        referrerPolicy="no-referrer-when-downgrade"
-      ></iframe>
-    </div>
-
-
+      <div className="mt-12 w-full h-80 md:h-96 rounded-lg overflow-hidden shadow-md">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d565.9863493451629!2d104.92969849675013!3d11.544271094967597!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3109517a45a7bed5%3A0xd8a2ae37461e456b!2sKohthmey%20Technology%20Co%2C.Ltd!5e0!3m2!1skm!2skh!4v1756973984208!5m2!1skm!2skh"
+          className="w-full h-full border-0"
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
 
       <Separator />
-
       <Footer />
     </div>
   );

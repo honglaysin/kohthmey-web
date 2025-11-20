@@ -172,7 +172,6 @@ const AboutUs = () => {
     "/images/img3.jpg",
     "/images/img4.jpg",
     "/images/img5.jpg",
-    "/images/img6.jpg",
   ];
   const [currentIndex, setCurrentIndex] = useState(0);
   useEffect(() => {
@@ -188,7 +187,7 @@ const AboutUs = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative h-96 text-white flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen text-white flex items-center justify-center">
         {/* Background Images */}
 
         {heroImages.map((img, index) => (
@@ -211,7 +210,7 @@ const AboutUs = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            Innovation. Integrity. Impact.
+            Empowering Ideas. Connecting Communities.
           </motion.h1>
           <motion.p
             className="text-xl md:text-2xl text-blue-100"
@@ -219,7 +218,7 @@ const AboutUs = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Leading Cambodia's digital transformation since 201
+            Driving Cambodia’s digital future with creativity and integrity
           </motion.p>
         </div>
       </section>
@@ -254,7 +253,7 @@ const AboutUs = () => {
             </div>
             <div className="relative">
               <img
-                src="/images/img6.jpg"
+                src="/images/img7.jpg"
                 alt="Team collaboration"
                 className="rounded-lg shadow-lg w-full h-auto"
               />
@@ -408,7 +407,7 @@ const AboutUs = () => {
                 className="w-28 h-28 bg-center bg-contain bg-no-repeat"
                 style={{ backgroundImage: "url('/partner/Wing.png')" }}
               ></div>
-              <h4 className="text-center font-medium text-gray-700">Wing Bank</h4>
+             
             </div>
 
             <div className="flex flex-col items-center space-y-4">
@@ -416,7 +415,7 @@ const AboutUs = () => {
                 className="w-28 h-28 bg-center bg-contain bg-no-repeat"
                 style={{ backgroundImage: "url('/partner/eget.png')" }}
               ></div>
-              <h4 className="text-center font-medium text-gray-700">E-Gets</h4>
+
             </div>
 
             <div className="flex flex-col items-center space-y-4">
@@ -424,112 +423,253 @@ const AboutUs = () => {
                 className="w-28 h-28 bg-center bg-contain bg-no-repeat"
                 style={{ backgroundImage: "url('/partner/Huawei.png')" }}
               ></div>
-              <h4 className="text-center font-medium text-gray-700">HUAWEI</h4>
+
             </div>
             <div className="flex flex-col items-center space-y-4">
               <div 
                 className="w-28 h-28 bg-center bg-contain bg-no-repeat"
                 style={{ backgroundImage: "url('/partner/ABA.png')" }}
               ></div>
-              <h4 className="text-center font-medium text-gray-700">ABA Bank</h4>
+
             </div>
             <div className="flex flex-col items-center space-y-4">
               <div 
                 className="w-28 h-28 bg-center bg-contain bg-no-repeat"
                 style={{ backgroundImage: "url('/partner/abc.jpg')" }}
               ></div>
-              <h4 className="text-center font-medium text-gray-700">ABC</h4>
+
             </div>
             <div className="flex flex-col items-center space-y-4">
               <div 
                 className="w-28 h-28 bg-center bg-contain bg-no-repeat"
                 style={{ backgroundImage: "url('/partner/cdf.png')" }}
               ></div>
-              <h4 className="text-center font-medium text-gray-700">CDF</h4>
+
             </div>
             <div className="flex flex-col items-center space-y-4">
               <div 
                 className="w-28 h-28 bg-center bg-contain bg-no-repeat"
                 style={{ backgroundImage: "url('/partner/Cellcard.png')" }}
               ></div>
-              <h4 className="text-center font-medium text-gray-700">Cellcard</h4>
+
             </div>
             <div className="flex flex-col items-center space-y-4">
               <div 
                 className="w-28 h-28 bg-center bg-contain bg-no-repeat"
                 style={{ backgroundImage: "url('/partner/Forte.png')" }}
               ></div>
-              <h4 className="text-center font-medium text-gray-700">Forte</h4>
+
             </div>
             <div className="flex flex-col items-center space-y-4">
               <div 
                 className="w-28 h-28 bg-center bg-contain bg-no-repeat"
                 style={{ backgroundImage: "url('/partner/Harbor.png')" }}
               ></div>
-              <h4 className="text-center font-medium text-gray-700">Harbor</h4>
+
             </div>
             <div className="flex flex-col items-center space-y-4">
               <div 
                 className="w-28 h-28 bg-center bg-contain bg-no-repeat"
                 style={{ backgroundImage: "url('/partner/Le-Conde.png')" }}
               ></div>
-              <h4 className="text-center font-medium text-gray-700">Le-Conde</h4>
+
             </div>
             <div className="flex flex-col items-center space-y-4">
               <div 
                 className="w-28 h-28 bg-center bg-contain bg-no-repeat"
                 style={{ backgroundImage: "url('/partner/Mekong-Net.png')" }}
               ></div>
-              <h4 className="text-center font-medium text-gray-700">Mekong-Net</h4>
+
             </div>
             <div className="flex flex-col items-center space-y-4">
               <div 
                 className="w-28 h-28 bg-center bg-contain bg-no-repeat"
                 style={{ backgroundImage: "url('/partner/prince.jpg')" }}
               ></div>
-              <h4 className="text-center font-medium text-gray-700">Prince</h4>
+
             </div>
             <div className="flex flex-col items-center space-y-4">
               <div 
                 className="w-28 h-28 bg-center bg-contain bg-no-repeat"
                 style={{ backgroundImage: "url('/partner/Smart.png')" }}
               ></div>
-              <h4 className="text-center font-medium text-gray-700">Smart</h4>
+
             </div>
             <div className="flex flex-col items-center space-y-4">
               <div 
                 className="w-28 h-28 bg-center bg-contain bg-no-repeat"
                 style={{ backgroundImage: "url('/partner/STAPANA.jpg')" }}
               ></div>
-              <h4 className="text-center font-medium text-gray-700">STAPANA</h4>
+
             </div>
             <div className="flex flex-col items-center space-y-4">
               <div 
                 className="w-28 h-28 bg-center bg-contain bg-no-repeat"
                 style={{ backgroundImage: "url('/partner/The-Peak.png')" }}
               ></div>
-              <h4 className="text-center font-medium text-gray-700">The-Peak</h4>
+
             </div>
             <div className="flex flex-col items-center space-y-4">
               <div 
                 className="w-28 h-28 bg-center bg-contain bg-no-repeat"
                 style={{ backgroundImage: "url('/partner/tiger.png')" }}
               ></div>
-              <h4 className="text-center font-medium text-gray-700">Tiger</h4>
+
             </div>
             <div className="flex flex-col items-center space-y-4">
               <div 
                 className="w-28 h-28 bg-center bg-contain bg-no-repeat"
                 style={{ backgroundImage: "url('/partner/truemoney.png')" }}
               ></div>
-              <h4 className="text-center font-medium text-gray-700">Truemoney</h4>
+
             </div>
             <div className="flex flex-col items-center space-y-4">
               <div 
                 className="w-28 h-28 bg-center bg-contain bg-no-repeat"
                 style={{ backgroundImage: "url('/partner/vattanac.jpg')" }}
               ></div>
-              <h4 className="text-center font-medium text-gray-700">Vattanac</h4>
+
+            </div>
+
+            <div className="flex flex-col items-center space-y-4">
+              <div 
+                className="w-28 h-28 bg-center bg-contain bg-no-repeat"
+                style={{ backgroundImage: "url('/partner/New Logo/WICAM.png')" }}
+              ></div>
+
+            </div>
+            <div className="flex flex-col items-center space-y-4">
+              <div 
+                className="w-28 h-28 bg-center bg-contain bg-no-repeat"
+                style={{ backgroundImage: "url('/partner/New Logo/WEWATCH.jpg')" }}
+              ></div>
+
+            </div>
+            <div className="flex flex-col items-center space-y-4">
+              <div 
+                className="w-28 h-28 bg-center bg-contain bg-no-repeat"
+                style={{ backgroundImage: "url('/partner/New Logo/vinina.JPG')" }}
+              ></div>
+
+            </div>
+            <div className="flex flex-col items-center space-y-4">
+              <div 
+                className="w-28 h-28 bg-center bg-contain bg-no-repeat"
+                style={{ backgroundImage: "url('/partner/New Logo/Vattanac Investment.jpg')" }}
+              ></div>
+
+            </div>
+            <div className="flex flex-col items-center space-y-4">
+              <div 
+                className="w-28 h-28 bg-center bg-contain bg-no-repeat"
+                style={{ backgroundImage: "url('/partner/New Logo/Vattanac Goft Resort.jpg')" }}
+              ></div>
+
+            </div>
+            <div className="flex flex-col items-center space-y-4">
+              <div 
+                className="w-28 h-28 bg-center bg-contain bg-no-repeat"
+                style={{ backgroundImage: "url('/partner/New Logo/studio.JPG')" }}
+              ></div>
+
+            </div>
+            <div className="flex flex-col items-center space-y-4">
+              <div 
+                className="w-28 h-28 bg-center bg-contain bg-no-repeat"
+                style={{ backgroundImage: "url('/partner/New Logo/Square Communication Cambodia.png')" }}
+              ></div>
+
+            </div>
+            <div className="flex flex-col items-center space-y-4">
+              <div 
+                className="w-28 h-28 bg-center bg-contain bg-no-repeat"
+                style={{ backgroundImage: "url('/partner/New Logo/ramen.JPG')" }}
+              ></div>
+
+            </div>
+            <div className="flex flex-col items-center space-y-4">
+              <div 
+                className="w-28 h-28 bg-center bg-contain bg-no-repeat"
+                style={{ backgroundImage: "url('/partner/New Logo/pteah chas.JPG')" }}
+              ></div>
+
+            </div>
+            <div className="flex flex-col items-center space-y-4">
+              <div 
+                className="w-28 h-28 bg-center bg-contain bg-no-repeat"
+                style={{ backgroundImage: "url('/partner/New Logo/oudong express.png')" }}
+              ></div>
+
+            </div>
+            <div className="flex flex-col items-center space-y-4">
+              <div 
+                className="w-28 h-28 bg-center bg-contain bg-no-repeat"
+                style={{ backgroundImage: "url('/partner/New Logo/NSC.jpg')" }}
+              ></div>
+
+            </div>
+            <div className="flex flex-col items-center space-y-4">
+              <div 
+                className="w-28 h-28 bg-center bg-contain bg-no-repeat"
+                style={{ backgroundImage: "url('/partner/New Logo/Logo G.T.V.C.png')" }}
+              ></div>
+
+            </div>
+            <div className="flex flex-col items-center space-y-4">
+              <div 
+                className="w-28 h-28 bg-center bg-contain bg-no-repeat"
+                style={{ backgroundImage: "url('/partner/New Logo/Lexus Cambodia.jpg')" }}
+              ></div>
+
+            </div>
+            <div className="flex flex-col items-center space-y-4">
+              <div 
+                className="w-28 h-28 bg-center bg-contain bg-no-repeat"
+                style={{ backgroundImage: "url('/partner/New Logo/KB.png')" }}
+              ></div>
+
+            </div>
+            <div className="flex flex-col items-center space-y-4">
+              <div 
+                className="w-28 h-28 bg-center bg-contain bg-no-repeat"
+                style={{ backgroundImage: "url('/partner/New Logo/JC.jpg')" }}
+              ></div>
+
+            </div>
+            <div className="flex flex-col items-center space-y-4">
+              <div 
+                className="w-28 h-28 bg-center bg-contain bg-no-repeat"
+                style={{ backgroundImage: "url('/partner/New Logo/ganzberg.JPG')" }}
+              ></div>
+
+            </div>
+            <div className="flex flex-col items-center space-y-4">
+              <div 
+                className="w-28 h-28 bg-center bg-contain bg-no-repeat"
+                style={{ backgroundImage: "url('/partner/New Logo/ENEOS.PNG')" }}
+              ></div>
+
+            </div>
+            <div className="flex flex-col items-center space-y-4">
+              <div 
+                className="w-28 h-28 bg-center bg-contain bg-no-repeat"
+                style={{ backgroundImage: "url('/partner/New Logo/Chip Mong Land.jpg')" }}
+              ></div>
+
+            </div>
+            <div className="flex flex-col items-center space-y-4">
+              <div 
+                className="w-28 h-28 bg-center bg-contain bg-no-repeat"
+                style={{ backgroundImage: "url('/partner/New Logo/cambodia airports.JPG')" }}
+              ></div>
+
+            </div>
+            <div className="flex flex-col items-center space-y-4">
+              <div 
+                className="w-28 h-28 bg-center bg-contain bg-no-repeat"
+                style={{ backgroundImage: "url('/partner/New Logo/Borey Chankiri.jpg')" }}
+              ></div>
+
             </div>
 
             
