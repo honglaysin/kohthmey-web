@@ -20,13 +20,26 @@ type Job = {
 };
 
 const benefits = [
-  { title: "NSSF", description: "", icon: "/benefits/benefit-1.png" },
-  { title: "Life Insurance", description: "", icon: "/benefits/benefit-2.png" },
-  { title: "In-House Health Care", description: "", icon: "/benefits/benefit-3.png" },
-  { title: "Internal & Outsource Training", description: "", icon: "/benefits/benefit-4.png" },
-  { title: "Monthly Attendance Bonus", description: "", icon: "/benefits/benefit-5.png" },
-  { title: "Monthly KPI Bonus", description: "", icon: "/benefits/benefit-6.png" },
-];
+    { title: "NSSF", description: "", icon: "/benefits/benefit-1.png" },
+    { title: "Life Insurance", description: "", icon: "/benefits/benefit-2.png" },
+    { title: "In-House Health Care", description: "", icon: "/benefits/benefit-3.png" },
+    { title: "Internal & Outsource Training", description: "", icon: "/benefits/benefit-4.png" },
+    { title: "Monthly Attendance Bonus", description: "", icon: "/benefits/benefit-5.png" },
+    { title: "Monthly KPI Bonus", description: "", icon: "/benefits/benefit-6.png" },
+    { title: "Staff Referral Bonus", description: "", icon: "/benefits/benefit-7.png" },
+    { title: "Annual Salary Increment", description: "", icon: "/benefits/benefit-8.png" },
+    { title: "Annual Bonus", description: "", icon: "/benefits/benefit-9.png" },
+    { title: "Annual Party", description: "", icon: "/benefits/benefit-10.png" },
+    { title: "Annual Trip", description: "", icon: "/benefits/benefit-11.png" },
+    { title: "Birthday Party", description: "", icon: "/benefits/benefit-12.png" },
+    { title: "Team Building Budget", description: "", icon: "/benefits/benefit-13.png" },
+    { title: "Company Fund", description: "", icon: "/benefits/benefit-14.png" },
+    { title: "4 Days off / month", description: "", icon: "/benefits/benefit-15.png" },
+    { title: "Special Leave", description: "", icon: "/benefits/benefit-16.png" },
+    { title: "Long Year Service Award", description: "", icon: "/benefits/benefit-17.png" },
+    { title: "Certificate of Merit Award", description: "", icon: "/benefits/benefit-18.png" },
+    { title: "Best Staff Award", description: "", icon: "/benefits/benefit-19.png" },
+  ];
 
 const Careers = () => {
   const [jobListings, setJobListings] = useState<Job[]>([]);
