@@ -213,14 +213,29 @@ const Careers = () => {
                   </div>
                 )}
 
-                <Link to="#application-form">
-                  <Button className="mt-4 bg-[#FACC15] text-black hover:bg-[#EAB308] font-medium">Apply</Button>
-                </Link>
+              <a href="#application-form">
+                <Button className="mt-4 bg-[#FACC15] text-black hover:bg-[#EAB308] font-medium">
+                  Apply
+                </Button>
+              </a>
+
               </Card>
             ))
           ) : (
             <p className="text-center text-gray-600">No open positions at the moment.</p>
           )}
+        </div>
+      </section>
+      {/* CTA Banner */}
+      <section className="py-20 px-4 md:px-8 lg:px-16 bg-cover bg-center relative text-center" style={{ backgroundImage: "url(https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1200&q=80)" }}>
+        <div className="absolute inset-0 bg-[#1E40AF] bg-opacity-90"></div>
+        <div className="container mx-auto relative z-10 text-white">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            Join One of Cambodia’s Fastest-Growing Tech Companies
+          </h2>
+          <p className="text-xl max-w-2xl mx-auto mb-8">
+            Be part of a dynamic team that thrives on innovation and growth.
+          </p>
         </div>
       </section>
 
