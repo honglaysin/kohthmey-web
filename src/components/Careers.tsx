@@ -1,129 +1,129 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Header";
+import Footer from "./Footer";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Label } from "./ui/label";
 import { Card } from "./ui/card";
-import Footer from "./Footer";
 import { Send } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const Careers = () => {
-  const values = [
-    { title: "NSSF", description: "", icon: "/benefits/benefit-1.png" },
-    { title: "Life Insurance", description: "", icon: "/benefits/benefit-2.png" },
-    { title: "In-House Health Care", description: "", icon: "/benefits/benefit-3.png" },
-    { title: "Internal & Outsource Training", description: "", icon: "/benefits/benefit-4.png" },
-    { title: "Monthly Attendance Bonus", description: "", icon: "/benefits/benefit-5.png" },
-    { title: "Monthly KPI Bonus", description: "", icon: "/benefits/benefit-6.png" },
-    { title: "Staff Referral Bonus", description: "", icon: "/benefits/benefit-7.png" },
-    { title: "Annual Salary Increment", description: "", icon: "/benefits/benefit-8.png" },
-    { title: "Annual Bonus", description: "", icon: "/benefits/benefit-9.png" },
-    { title: "Annual Party", description: "", icon: "/benefits/benefit-10.png" },
-    { title: "Annual Trip", description: "", icon: "/benefits/benefit-11.png" },
-    { title: "Birthday Party", description: "", icon: "/benefits/benefit-12.png" },
-    { title: "Team Building Budget", description: "", icon: "/benefits/benefit-13.png" },
-    { title: "Company Fund", description: "", icon: "/benefits/benefit-14.png" },
-    { title: "4 Days off / month", description: "", icon: "/benefits/benefit-15.png" },
-    { title: "Special Leave", description: "", icon: "/benefits/benefit-16.png" },
-    { title: "Long Year Service Award", description: "", icon: "/benefits/benefit-17.png" },
-    { title: "Certificate of Merit Award", description: "", icon: "/benefits/benefit-18.png" },
-    { title: "Best Staff Award", description: "", icon: "/benefits/benefit-19.png" },
-  ];
+type Job = {
+  id: number;
+  title: string;
+  department: string;
+  location: string;
+  descriptions: any[];
+  key_responsibilities: any[];
+  job_requirements: any[];
+};
 
-  const jobListings = [
-        {
-          title: "General Manager Assistant",
-          department: "Management",
-          location: "Phnom Penh",
-          description: `The General Manager Assistant is responsible for assisting the General Manager with daily operations and decision implementation, managing internal documentation and contract-related files. This position requires excellent Chinese-Khmer language skills, a legal academic background, and strong document management capabilities.
-
-      Key Responsibilities:
-      1. Assist the General Manager with daily office tasks and ensure the effective implementation of instructions;
-      2. Manage document archiving, meeting minutes, and departmental records to ensure information security and traceability;
-      3. Coordinate interdepartmental collaboration and facilitate the smooth progress of cross-team projects;
-      4. Receive, analyze, and coordinate tasks assigned by the General Manager, ensuring timely and efficient completion;
-      5. Provide Chinese-Khmer translation support for the General Manager and other departments.
-
-      Job Requirements:
-      1. Bachelor’s degree or above in Law or a related field, with solid legal knowledge;
-      2. Proficient in Chinese and Khmer; proficiency in English is an advantage;
-      3. Experience in contract review, legal document handling, and related administrative work is preferred;
-      4. Strong document management, communication, and execution skills;
-      5. High professional ethics, strong sense of responsibility, and meticulous work attitude;
-      6. Proficient in office software and document management tools.`,
-        },
-        {
-          title: "Marketing & Sales Supervisor",
-          department: "Management",
-          location: "Phnom Penh",
-          description: `The General Manager Assistant is responsible for assisting the General Manager with daily operations and decision implementation, managing internal documentation and contract-related files. This position requires excellent Chinese-Khmer language skills, a legal academic background, and strong document management capabilities.
-
-      Key Responsibilities:
-      1. Identify potential clients through various channels, update client prospects and plans, conduct visits, and drive successful partnerships.
-      2. Maintain and enhance relationships with existing clients, ensuring high client satisfaction through regular follow-ups and proactive issue resolution.
-      3. Participate in business negotiations with key clients and partners, oversee contract implementation, and ensure timely and high-quality service delivery.
-      4. Lead and supervise the marketing and sales team to ensure monthly sales targets are achieved, including assigning individual responsibilities, setting clear KPIs, and providing necessary support to the team.
-      5. Arrange and manage team tasks effectively to secure continuous achievement of monthly signing targets.
-      6. Coach and mentor team members, conduct regular performance evaluations, and enhance team capabilities and accountability.
-      7. Plan and execute online and offline marketing campaigns, business development, brand promotion, and event execution.
-      8. Seek and secure potential sponsorship opportunities for company or client events activities, building strategic partnerships with sponsors.
-      9. Develop and maintain strong cooperative relationships with both government and private sector partners to support business development, brand promotion, and event execution.
-      10. Collaborate with external partners such as media agencies, platforms, and influencers to implement integrated marketing strategies.
-      11. Coordinate with Khmer and Chinese content production, operations, and design teams to ensure smooth progress of marketing and sales projects.
-      12. Analyze sales performance, collect market and client feedback, report progress with to management and provide optimization suggestions.
-      13. Update weekly sales reports, client development progress, event summaries, and client feedback.
-
-      Job Requirements:
-      1. Bachelor’s degree or above in Marketing, Business Administration, Media, Public Relations, or related fields is preferred.
-      2. Strong skills in both written and spoken Chinese and English are required.
-      3. Proven leadership skills with the ability to lead teams to achieve sales and marketing KPIs.
-      4. Minimum 3 years of relevant experience in sales or marketing promotion, with a background in media advertising or digital marketing preferred.
-      5. Experience in sponsorship development and collaboration with government or private enterprises is a plus. 
-      6. Strong communication abilities to build and maintain positive relationships with clients, teams, and partners.
-      7. Ability to maintain high performance and complete tasks on time in a high-pressure environment.`,
-        },
-        {
-          title: "Content Creator / Producer",
-          department: "Management",
-          location: "Phnom Penh",
-          description: `The General Manager Assistant is responsible for assisting the General Manager with daily operations and decision implementation, managing internal documentation and contract-related files. This position requires excellent Chinese-Khmer language skills, a legal academic background, and strong document management capabilities.
-
-      Key Responsibilities:
-      1. Serve as the on-camera host for interviews, programs, and special features, presenting professionally and confidently.
-      2. Participate in content planning, develop program outlines, and prepare interview questions.
-      3. Conduct interviews with guests from various backgrounds, guiding conversations to deliver informative and engaging stories.
-      4. Collaborate with the production team to ensure smooth filming and quality output.
-      5. Stay aware of trending topics and audience interests to inspire fresh, relevant content ideas.
-
-      Job Requirements:
-      1. Bachelor’s degree or above preferred; background in journalism, media, performing arts, or related fields is a plus.
-      2. Native-level fluency in Khmer; other language skills (Chinese, English) are an advantage.
-      3. Strong on-camera presence, clear articulation, and engaging delivery style.
-      4. Excellent interpersonal and communication skills; able to interact confidently with diverse guests.
-      5. Creative mindset, adaptability, and the ability to perform well under pressure.`,
-        },
+const benefits = [
+  { title: "NSSF", description: "", icon: "/benefits/benefit-1.png" },
+  { title: "Life Insurance", description: "", icon: "/benefits/benefit-2.png" },
+  { title: "In-House Health Care", description: "", icon: "/benefits/benefit-3.png" },
+  { title: "Internal & Outsource Training", description: "", icon: "/benefits/benefit-4.png" },
+  { title: "Monthly Attendance Bonus", description: "", icon: "/benefits/benefit-5.png" },
+  { title: "Monthly KPI Bonus", description: "", icon: "/benefits/benefit-6.png" },
 ];
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const formData = new FormData(e.target as HTMLFormElement);
+const Careers = () => {
+  const [jobListings, setJobListings] = useState<Job[]>([]);
+  const [loading, setLoading] = useState(true);
 
-    fetch("https://getform.io/f/bqoeerlb", {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => {
-        if (response.ok) {
-          alert("Application submitted successfully!");
+  useEffect(() => {
+    const fetchJobs = async () => {
+      try {
+        const res = await fetch("https://api.kohthmey.com/api/job?populate=*");
+        if (!res.ok) throw new Error("Network response not ok: " + res.status);
+
+        const data = await res.json();
+        console.log("Jobs API Response:", data);
+
+        if (data.data && data.data.length > 0) {
+          const jobs: Job[] = data.data.map((item: any) => ({
+            id: item.id,
+            title: item.title,
+            department: item.department,
+            location: item.location,
+            descriptions: item.descriptions || [],
+            key_responsibilities: item.key_responsibilities || [],
+            job_requirements: item.job_requirements || [],
+          }));
+          setJobListings(jobs);
         } else {
-          alert("There was a problem with your submission.");
+          setJobListings([]);
         }
-      })
-      .catch(() => {
-        alert("An error occurred. Please try again later.");
+        setLoading(false);
+      } catch (err) {
+        console.error("Error fetching jobs:", err);
+        setLoading(false);
+      }
+    };
+
+    fetchJobs();
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+
+    try {
+      // Upload resume file first
+      const fileInput = form.querySelector<HTMLInputElement>("#resume");
+      let uploadedFileId = null;
+
+      if (fileInput?.files?.length) {
+        const fileData = new FormData();
+        fileData.append("files", fileInput.files[0]);
+
+        const uploadRes = await fetch("https://api.kohthmey.com/api/upload", {
+          method: "POST",
+          body: fileData,
+          // Add Authorization header if your API is private
+          // headers: { "Authorization": `Bearer ${YOUR_STRAPI_API_TOKEN}` }
+        });
+
+        const uploadJson = await uploadRes.json();
+        if (uploadJson && uploadJson[0] && uploadJson[0].id) {
+          uploadedFileId = uploadJson[0].id;
+        }
+      }
+
+      // Submit application entry to Strapi
+      const payload = {
+        data: {
+          name: formData.get("name"),
+          email: formData.get("email"),
+          message: formData.get("message"),
+          resume: uploadedFileId ? [uploadedFileId] : [],
+        },
+      };
+
+      const res = await fetch("https://api.kohthmey.com/api/applications", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          // Add Authorization header if your collection is private
+          // "Authorization": `Bearer ${YOUR_STRAPI_API_TOKEN}`
+        },
+        body: JSON.stringify(payload),
       });
+
+      if (res.ok) {
+        alert("Application submitted successfully!");
+        form.reset();
+      } else {
+        const errData = await res.json();
+        console.error(errData);
+        alert("Error submitting application. Check console for details.");
+      }
+    } catch (err) {
+      console.error("Error:", err);
+      alert("An unexpected error occurred. Please try again.");
+    }
   };
 
   return (
@@ -147,11 +147,11 @@ const Careers = () => {
           <p className="text-gray-600 max-w-2xl mx-auto">Discover what makes Koh Thmey Technology an exceptional workplace.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {values.map((value) => (
-            <Card key={value.title} className="p-6 text-center shadow-md hover:shadow-lg transition-shadow">
-              <img src={value.icon} alt={value.title} className="mx-auto mb-4 h-16 w-16 object-contain" />
-              <h3 className="text-xl font-bold text-gray-900 mb-2">{value.title}</h3>
-              <p className="text-gray-600 text-sm">{value.description}</p>
+          {benefits.map((b) => (
+            <Card key={b.title} className="p-6 text-center shadow-md hover:shadow-lg transition-shadow">
+              <img src={b.icon} alt={b.title} className="mx-auto mb-4 h-16 w-16 object-contain" />
+              <h3 className="text-xl font-bold text-gray-900 mb-2">{b.title}</h3>
+              <p className="text-gray-600 text-sm">{b.description}</p>
             </Card>
           ))}
         </div>
@@ -165,33 +165,49 @@ const Careers = () => {
         </div>
 
         <div className="grid grid-cols-1 gap-6">
-          {jobListings.map((job) => (
-            <Card key={job.title} className="p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col justify-between bg-[#E8EBEF]">
-              <div>
+          {loading ? (
+            <p className="text-center text-gray-600">Loading jobs...</p>
+          ) : jobListings.length > 0 ? (
+            jobListings.map((job) => (
+              <Card key={job.id} className="p-6 shadow-md hover:shadow-lg transition-shadow bg-[#E8EBEF]">
                 <h3 className="text-xl font-bold text-gray-900">{job.title}</h3>
                 <p className="text-gray-600 mb-2">{job.department} | {job.location}</p>
-                {job.description && (
-                  <p className="text-gray-700 text-l whitespace-pre-line">{job.description}</p>
-                )}
-              </div>
-              <Link to="#application-form">
-                <Button className="mt-4 bg-[#FACC15] text-black hover:bg-[#EAB308] font-medium">Apply</Button>
-              </Link>
-            </Card>
-          ))}
-        </div>
-      </section>
 
-      {/* CTA Banner */}
-      <section className="py-20 px-4 md:px-8 lg:px-16 bg-cover bg-center relative text-center" style={{ backgroundImage: "url(https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1200&q=80)" }}>
-        <div className="absolute inset-0 bg-[#1E40AF] bg-opacity-90"></div>
-        <div className="container mx-auto relative z-10 text-white">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Join One of Cambodia’s Fastest-Growing Tech Companies
-          </h2>
-          <p className="text-xl max-w-2xl mx-auto mb-8">
-            Be part of a dynamic team that thrives on innovation and growth.
-          </p>
+                {job.descriptions.length > 0 && (
+                  <div className="mb-4">
+                    <h4 className="font-semibold text-gray-800">Description:</h4>
+                    <p className="text-gray-700 whitespace-pre-line">
+                      {job.descriptions.map((d: any) => d.children.map((c: any) => c.text).join(" ")).join("\n")}
+                    </p>
+                  </div>
+                )}
+
+                {job.key_responsibilities.length > 0 && (
+                  <div className="mb-4">
+                    <h4 className="font-semibold text-gray-800">Key Responsibilities:</h4>
+                    <p className="text-gray-700 whitespace-pre-line">
+                      {job.key_responsibilities.map((d: any) => d.children.map((c: any) => c.text).join(" ")).join("\n")}
+                    </p>
+                  </div>
+                )}
+
+                {job.job_requirements.length > 0 && (
+                  <div>
+                    <h4 className="font-semibold text-gray-800">Job Requirements:</h4>
+                    <p className="text-gray-700 whitespace-pre-line">
+                      {job.job_requirements.map((d: any) => d.children.map((c: any) => c.text).join(" ")).join("\n")}
+                    </p>
+                  </div>
+                )}
+
+                <Link to="#application-form">
+                  <Button className="mt-4 bg-[#FACC15] text-black hover:bg-[#EAB308] font-medium">Apply</Button>
+                </Link>
+              </Card>
+            ))
+          ) : (
+            <p className="text-center text-gray-600">No open positions at the moment.</p>
+          )}
         </div>
       </section>
 

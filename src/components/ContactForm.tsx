@@ -79,7 +79,7 @@ const ContactUs = () => {
       ];
 
       const res = await fetch(
-        "https://kohthmey-strapi-api.onrender.com/api/contact-messages",
+        "https://api.kohthmey.com/api/contact-messages",
         {
           method: "POST",
           headers: {
