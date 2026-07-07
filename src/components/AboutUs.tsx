@@ -147,7 +147,7 @@ const AboutUs = () => {
         "Strengthen bonds and build teamwork with fun activities and celebrations at Harbor Group’s 2023 team building event.",
       date: "April 2023",
       link: "https://www.facebook.com/share/p/177HK5ddFt/",
-      image: "images/event-6.jpg",
+      image: "/images/event-6.jpg",
     },
     {
       title: "National and Career Fair 2022 at Khos Pich",
@@ -794,12 +794,12 @@ const AboutUs = () => {
             Southeast Asia.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/ContactForm">
+            <Link to="/contactform">
               <Button className="bg-[#FACC15] text-black hover:bg-[#EAB308] font-medium text-lg px-8 py-6">
                 Join Our Team
               </Button>
             </Link>
-            <Link to="/ContactForm">
+            <Link to="/contactform">
               <Button
                 variant="outline"
                 className="border-white text-black hover:bg-white hover:text-[#1E40AF] font-medium text-lg px-8 py-6"

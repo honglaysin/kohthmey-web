@@ -378,13 +378,13 @@ const Services = () => {
               collaborate and create something amazing together.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/ContactForm">
+            <Link to="/contactform">
               <Button className="bg-[#1E40AF] hover:bg-[#1E3A8A] text-white font-medium text-lg px-8 py-6">
                 Start Your Project
               </Button>
             </Link>
 
-            <Link to="/ContactForm">
+            <Link to="/contactform">
               <Button
                 variant="outline"
                 className="border-white text-black hover:bg-white hover:text-black font-medium text-lg px-8 py-6"

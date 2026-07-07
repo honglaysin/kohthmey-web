@@ -11,12 +11,12 @@ interface HeaderProps {
 const Header = ({
   logo = "/logo/logo.png",
   navLinks = [
-    { title: "Home", href: "/#" },
-    { title: "About Us", href: "/AboutUs" },
-    { title: "Services", href: "/Services" },
-    { title: "Our Produce", href: "/Brands" },
-    { title: "Careers", href: "/Careers" },
-    { title: "Contact", href: "/ContactForm" },
+    { title: "Home", href: "/" },
+    { title: "About Us", href: "/aboutus" },
+    { title: "Services", href: "/services" },
+    { title: "Our Produce", href: "/brands" },
+    { title: "Careers", href: "/careers" },
+    { title: "Contact", href: "/contactform" },
   ],
 }: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -69,7 +69,7 @@ const Header = ({
               {link.title}
             </Link>
           ))}
-          <Link to="/ContactForm" className="hidden md:inline-block">
+          <Link to="/contactform" className="hidden md:inline-block">
             <Button className="bg-[#1E40AF] hover:bg-[#1E40AF]/90 text-white ml-4">
               Work With Us
             </Button>

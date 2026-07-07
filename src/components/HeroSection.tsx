@@ -22,11 +22,11 @@ const HeroSection = ({
   subtext = "Innovating media, technology, and social engagement for millions of users.",
   primaryCTA = {
     text: "Discover Our Work",
-    href: "/Brands",
+    href: "/brands",
   },
   secondaryCTA = {
     text: "Join Our Team",
-    href: "/Careers",
+    href: "/careers",
   },
   backgroundImage = "/logo/produce.jpg",
 }: HeroSectionProps) => {

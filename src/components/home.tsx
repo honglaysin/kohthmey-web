@@ -161,7 +161,7 @@ const Home = () => {
                 className="rounded-lg shadow-lg w-full h-auto"
               />
               <Link
-                to="/AboutUs"
+                to="/aboutus"
                 className="absolute inset-0 flex items-center justify-center"
               >
                 <div className="absolute -bottom-6 -right-6 bg-yellow-400 p-4 rounded-lg shadow-lg hidden md:block">
@@ -317,7 +317,7 @@ const Home = () => {
             Be part of one of the fastest-growing media technology companies in
             Cambodia.
           </p>
-          <Link to="/Careers">
+          <Link to="/careers">
             <Button className="bg-yellow-400 text-gray-900 hover:bg-yellow-500 font-medium text-lg px-8 py-6">
               Explore Careers
             </Button>
