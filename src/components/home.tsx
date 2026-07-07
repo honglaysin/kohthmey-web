@@ -64,7 +64,7 @@ const Home = () => {
       excerpt:
         "Our flagship app celebrates a major milestone as user base continues to grow across the region.",
       image:
-        "/images/tnaot-1m.png",
+        "/images/App/tnaot-1m.png",
       date: "2022",
     },
     {
@@ -156,7 +156,7 @@ const Home = () => {
             </div>
             <div className="relative">
               <img
-                src="/images/img7.jpg"
+                src="/images/About%20Us/img7.jpg"
                 alt="Team collaboration"
                 className="rounded-lg shadow-lg w-full h-auto"
               />
@@ -220,7 +220,7 @@ const Home = () => {
                   <p className="text-sm text-blue-100">App Rating</p>
                 </div>
                 <div className="bg-blue-800 p-4 rounded-lg text-center">
-                  <img src="/images/tnaot-qr.png" alt="" />
+                  <img src="/images/App/tnaot-qr.png" alt="" />
                 </div>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -240,7 +240,7 @@ const Home = () => {
             </div>
             <div className="flex justify-center">
               <img
-                src="/images/tnaot-1.png"
+                src="/images/App/tnaot-1.png"
                 alt="TNAOT App"
                 className="max-w-full h-auto rounded-xl shadow-2xl transform rotate-3"
                 style={{ maxHeight: "500px" }}

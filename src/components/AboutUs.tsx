@@ -107,7 +107,7 @@ const AboutUs = () => {
         "Join us for a joyful celebration filled with fun, laughter, and unforgettable memories as we mark the special moments of Birthday Party 2025.",
       date: "April 2025",
       link: "https://www.facebook.com/tnaot.kh",
-      image: "/images/event-1.jpg",
+      image: "/images/Event/event-1.jpg",
     },
     {
       title: "Happy Women's Day",
@@ -115,7 +115,7 @@ const AboutUs = () => {
         "Celebrating the strength, courage, and achievements of women around the world. Join us in honoring their inspiring journey.",
       date: "March 2025",
       link: "https://www.facebook.com/share/p/16oejR8od8/",
-      image: "/images/event-2.jpg",
+      image: "/images/Event/event-2.jpg",
     },
     {
       title: "Chinese New Year Events 2025",
@@ -123,7 +123,7 @@ const AboutUs = () => {
         "Celebrate the vibrant traditions and festivities of Chinese New Year 2025, featuring colorful parades, cultural performances, and community events welcoming the Year of the Snake.",
       date: "January 2025",
       link: "https://www.facebook.com/share/p/1B5XVKZJRd/",
-      image: "/images/event-3.jpg",
+      image: "/images/Event/event-3.jpg",
     },
     {
       title: "Chrismas Party 2024",
@@ -131,7 +131,7 @@ const AboutUs = () => {
         "Celebrate the joy and warmth of the season at our Christmas Party 2024, filled with festive cheer, music, and holiday fun for everyone.",
       date: "December 2024",
       link: "https://www.facebook.com/share/p/19gu8r1zb7/",
-      image: "/images/event-4.jpg",
+      image: "/images/Event/event-4.jpg",
     },
     {
       title: "People to People Exchange Amateur Badminton Championships 2024",
@@ -139,7 +139,7 @@ const AboutUs = () => {
         "Join badminton enthusiasts from across the region for thrilling matches and friendly competition at the 2024 Amateur Championships.",
       date: "September 2024",
       link: "https://www.facebook.com/tnaot.kh",
-      image: "/images/event-5.jpg",
+      image: "/images/Event/event-5.jpg",
     },
     {
       title: "Harbor Group Team Buiding Party 2023",
@@ -147,7 +147,7 @@ const AboutUs = () => {
         "Strengthen bonds and build teamwork with fun activities and celebrations at Harbor Group’s 2023 team building event.",
       date: "April 2023",
       link: "https://www.facebook.com/share/p/177HK5ddFt/",
-      image: "/images/event-6.jpg",
+      image: "/images/Event/event-6.jpg",
     },
     {
       title: "National and Career Fair 2022 at Khos Pich",
@@ -155,7 +155,7 @@ const AboutUs = () => {
         "Engaging with the community through our outreach initiatives.",
       date: "October 2022",
       link: "https://www.facebook.com/share/p/19AvTSNedH/",
-      image: "/images/event-7.png",
+      image: "/images/Event/event-7.png",
     },
     {
       title: "Harbor Group Annual Trip 2022",
@@ -163,15 +163,15 @@ const AboutUs = () => {
         "Experience memorable moments and camaraderie during the Harbor Group’s 2022 Annual Trip filled with adventure and fun.",
       date: "April 2022",
       link: "https://www.facebook.com/share/p/1DubSVv3FS/",
-      image: "/images/event-8.jpg",
+      image: "/images/Event/event-8.jpg",
     },
   ];
   const heroImages = [
-    "/images/img1.jpg",
-    "/images/img2.jpg",
-    "/images/img3.jpg",
-    "/images/img4.jpg",
-    "/images/img5.jpg",
+    "/images/About%20Us/img1.jpg",
+    "/images/About%20Us/img2.jpg",
+    "/images/About%20Us/img3.jpg",
+    "/images/About%20Us/img4.jpg",
+    "/images/About%20Us/img5.jpg",
   ];
   const [currentIndex, setCurrentIndex] = useState(0);
   useEffect(() => {
@@ -253,7 +253,7 @@ const AboutUs = () => {
             </div>
             <div className="relative">
               <img
-                src="/images/img7.jpg"
+                src="/images/About%20Us/img7.jpg"
                 alt="Team collaboration"
                 className="rounded-lg shadow-lg w-full h-auto"
               />

@@ -142,7 +142,7 @@ const Brands = () => {
           >
             <div className="relative">
               <img
-                src="/images/tnaot-1.png"
+                src="/images/App/tnaot-1.png"
                 alt="TNAOT App on Phone"
                 className="max-w-sm h-auto rounded-3xl shadow-2xl transform rotate-6 hover:rotate-3 transition-transform duration-300"
               />
@@ -172,19 +172,19 @@ const Brands = () => {
             {[
               {
                 image:
-                  "/images/tnaot-10.png",
+                  "/images/App/tnaot-10.png",
                 title: "News Feed",
                 description: "Stay updated with real-time news",
               },
               {
                 image:
-                  "/images/tnaot-6.png",
+                  "/images/App/tnaot-6.png",
                 title: "Entertainment Hub",
                 description: "Endless entertainment options",
               },
               {
                 image:
-                  "/images/tnaot-4.jpg",
+                  "/images/App/tnaot-4.jpg",
                 title: "Social Features",
                 description: "Connect with your community",
               },
