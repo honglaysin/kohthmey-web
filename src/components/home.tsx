@@ -224,13 +224,13 @@ const Home = () => {
                 </div>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
-                <a href="https://play.google.com/store/apps/details?id=com.tnaot.newspro&pcampaignid=web_share">
+                <a href="https://play.google.com/store/apps/details?id=com.tnaot.app">
                 <Button className="bg-black text-white hover:bg-gray-800 flex items-center gap-2">
                   <Download size={18} />
                   Google Play
                 </Button>
                 </a>
-                <a href="https://apps.apple.com/us/app/tnaot-khmer-content-platform/id1296073079">
+                <a href="https://apps.apple.com/us/app/tnaot/id6766489237">
                 <Button className="bg-black text-white hover:bg-gray-800 flex items-center gap-2">
                   <Download size={18} />
                   App Store

@@ -222,37 +222,49 @@ const Services = () => {
 <PromoVideos />
 
 
-{/* Harbor Property Section */}
+{/* TNAOT Section */}
 <section className="py-20 px-4 md:px-8 lg:px-16 bg-white">
   <div className="container mx-auto text-start">
     {/* Logo */}
     <div className="flex justify-center mb-6">
-      <img
-        src="/logo/Harbor-logo.png"
-        alt="Harbor Property Logo"
-        className="h-20"
-      />
+      <a href="https://www.tnaot.app/" target="_blank" rel="noopener noreferrer">
+        <img
+          src="/logo/tnaot-app.png"
+          alt="TNAOT Logo"
+          className="h-40"
+        />
+      </a>
     </div>
 
     <h2 className="text-3xl text-center md:text-4xl font-bold text-gray-900 mb-4">
-      Harbor Property
+      TNAOT News
     </h2>
     <p className="text-gray-600 max-w-3xl mx-auto mb-8 text-xl">
-      Find homes or sell any <span className="text-[#399152] font-semibold">property in Cambodia</span> with our professional <span className="text-[#399152] font-semibold">real estate app.</span> 
-     <br /> Harbor Property App is Cambodia’s leading real estate marketplace dedicated to empowering consumers with data, inspiration, and connecting them with the best local professionals.
+      Stay informed with <span className="text-[#e42525] font-semibold">TNAOT News</span>, Cambodia's digital news platform for fast, reliable updates on local stories, national headlines, and important events.
+    </p>
+    <p className="text-gray-600 max-w-3xl mx-auto mb-8 text-xl">TNAOT delivers breaking news, social updates, entertainment, lifestyle, sports, and video content in one easy-to-use platform.</p>
+    <p className="text-gray-600 max-w-3xl mx-auto mb-8 text-xl">Users can follow trending stories, watch short videos, discover community updates, and receive timely information wherever they are.</p>
+    <p className="text-gray-600 max-w-3xl mx-auto mb-8 text-xl">Our platform helps brands and organizations reach Cambodian audiences through trusted media coverage, content distribution, and digital advertising solutions.</p>
+    <p className="text-gray-600 max-w-3xl mx-auto mb-8 text-xl">Available on mobile and web, TNAOT News makes daily information accessible, convenient, and relevant for Cambodian readers.</p>
+    <div className="hidden">
+    <p className="text-gray-600 max-w-3xl mx-auto mb-8 text-xl">
+      Stay informed with <span className="text-[#399152] font-semibold">TNAOT News</span>, Cambodia's digital news platform for fast, reliable updates on local stories, national headlines, and important events.
+      <br /> TNAOT is Cambodia’s leading real estate marketplace dedicated to empowering consumers with data, inspiration, and connecting them with the best local professionals.
     </p>
     <p className="text-gray-600 max-w-3xl mx-auto mb-8 text-xl">Search over properties for sale and rent across all of Cambodia. Plus upload a property to sell or lease your home for FREE! (https://www.harbor-property.com/）</p>
     <p className="text-gray-600 max-w-3xl mx-auto mb-8 text-xl">Our core service included New Development, Borey, Condo, Land, Apartment, Shophouse, and Commercial etc.</p>
     <p className="text-gray-600 max-w-3xl mx-auto mb-8 text-xl">Harbor Property App create an efficient, convenient, professional and accurate Cambodian real estate information service platform.</p>
     <p className="text-gray-600 max-w-3xl mx-auto mb-8 text-xl">Available in 4 language, Eng, KH, CN, and Thai.</p>
     <p className="text-gray-600 max-w-3xl mx-auto mb-8 text-xl">Selling, Buying and Renting with the Leading Real Estate Portal in Cambodia—— Harbor Property APP （https://www.harbor-property.com/）</p>
-    
+    </div>
+
     {/* Features */}
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-10">
-      <img src="/partner/Harbor-1.png" alt="Feature 1" className="rounded-lg shadow" />
-      <img src="/partner/Harbor-2.png" alt="Feature 2" className="rounded-lg shadow" />
-      <img src="/partner/Harbor-3.png" alt="Feature 3" className="rounded-lg shadow" />
-      <img src="/partner/Harbor-4.png" alt="Feature 4" className="rounded-lg shadow" />
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mt-10">
+      <img src="/public/images/App/home-1.jpg" alt="Feature 1" className="rounded-lg shadow" />
+      <img src="/public/images/App/home-2.jpg" alt="Feature 2" className="rounded-lg shadow" />
+      <img src="/public/images/App/home-3.jpg" alt="Feature 3" className="rounded-lg shadow" />
+      <img src="/public/images/App/home-4.jpg" alt="Feature 4" className="rounded-lg shadow" />
+      <img src="/public/images/App/home-5.jpg" alt="Feature 5" className="rounded-lg shadow" />
     </div>
   </div>
 </section>

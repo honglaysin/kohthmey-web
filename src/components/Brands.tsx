@@ -119,13 +119,13 @@ const Brands = () => {
               of Cambodian digital culture in one app.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href="https://play.google.com/store/apps/details?id=com.tnaot.newspro&pcampaignid=web_share">
+              <a href="https://play.google.com/store/apps/details?id=com.tnaot.app">
               <Button className="bg-black text-white hover:bg-gray-800 flex items-center gap-2 px-6 py-3">
                 <Download size={20} />
                 Google Play
               </Button>
               </a>
-              <a href="https://apps.apple.com/us/app/tnaot-khmer-content-platform/id1296073079">
+              <a href="https://apps.apple.com/us/app/tnaot/id6766489237">
               <Button className="bg-black text-white hover:bg-gray-800 flex items-center gap-2 px-6 py-3">
                 <Download size={20} />
                 App Store
@@ -315,13 +315,13 @@ const Brands = () => {
               platforms.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <a href="https://play.google.com/store/apps/details?id=com.tnaot.newspro&pcampaignid=web_share">
+              <a href="https://play.google.com/store/apps/details?id=com.tnaot.app">
               <Button className="bg-black text-white hover:bg-gray-800 flex items-center gap-2 px-8 py-4 text-lg">
                 <Download size={24} />
                 Download for Android
               </Button>
               </a>
-              <a href="https://apps.apple.com/us/app/tnaot-khmer-content-platform/id1296073079">
+              <a href="https://apps.apple.com/us/app/tnaot/id6766489237">
               <Button className="bg-black text-white hover:bg-gray-800 flex items-center gap-2 px-8 py-4 text-lg">
                 <Download size={24} />
                 Download for iOS

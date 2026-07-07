@@ -259,23 +259,26 @@ const ContactUs = () => {
             {[
               {
                 title: "Customer Service",
-                email: "support@tnaot.com",
-                phone: "(+855) 023 922 788",
+                emails: ["support@tnaot.com"],
+                phones: ["(+855) 023 922 788"],
               },
               {
                 title: "Advertising",
-                email: "chenghuyleng@kohthmey.net",
-                phone: "(+855) 010 688 511",
+                emails: ["support@tnaot.com"],
+                phones: ["(+855) 010 688 511"],
               },
               {
                 title: "Business",
-                email: "chenghuyleng@kohthmey.net",
-                phone: "(+855) 010 688 511",
+                emails: ["support@tnaot.com"],
+                phones: ["(+855) 010 688 511"],
               },
               {
                 title: "Careers",
-                email: "hr@kohthmey.net hr@kohthmey.com",
-                phone: "Telegram : 015 856 322 (KHM&ENG) / 061 538 022 (CHN)",
+                emails: ["hr@kohthmey.net", "hr@kohthmey.com"],
+                phones: [
+                  "Telegram: 015 856 322 (KHM&ENG)",
+                  "061 538 022 (CHN)",
+                ],
               },
             ].map((contact) => (
               <Card
@@ -285,14 +288,32 @@ const ContactUs = () => {
                 <h4 className="text-lg font-bold text-gray-900 mb-2">
                   {contact.title}
                 </h4>
-                <p className="text-gray-700 flex items-center">
-                  <Mail size={16} className="mr-2 text-[#1E40AF]" />
-                  {contact.email}
-                </p>
-                <p className="text-gray-700 flex items-center mt-1">
-                  <Phone size={16} className="mr-2 text-[#1E40AF]" />
-                  {contact.phone}
-                </p>
+                <div className="space-y-1">
+                  {contact.emails.map((email) => (
+                    <p
+                      key={email}
+                      className="text-gray-700 flex items-start gap-2 leading-relaxed"
+                    >
+                      <Mail
+                        size={16}
+                        className="mt-1 shrink-0 text-[#1E40AF]"
+                      />
+                      <span className="break-all">{email}</span>
+                    </p>
+                  ))}
+                  {contact.phones.map((phone) => (
+                    <p
+                      key={phone}
+                      className="text-gray-700 flex items-start gap-2 leading-relaxed"
+                    >
+                      <Phone
+                        size={16}
+                        className="mt-1 shrink-0 text-[#1E40AF]"
+                      />
+                      <span>{phone}</span>
+                    </p>
+                  ))}
+                </div>
               </Card>
             ))}
           </div>

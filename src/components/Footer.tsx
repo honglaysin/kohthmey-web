@@ -1,6 +1,6 @@
 // src/components/Footer.tsx
 import React from "react";
-import { Facebook, Instagram, Linkedin, Mail, Youtube } from "lucide-react";
+import { Facebook, Linkedin, Send } from "lucide-react";
 import { Separator } from "./ui/separator";
 import { Link } from "react-router-dom";
 
@@ -52,9 +52,7 @@ const Footer = () => {
             <div className="flex space-x-4">
               <a href="https://www.facebook.com/kohthmeykh" className="bg-blue-800 hover:bg-blue-700 p-2 rounded-full transition-colors"><Facebook size={20} /></a>
               <a href="https://www.linkedin.com/company/koh-thmey-technology-co-ltd/" className="bg-blue-800 hover:bg-blue-700 p-2 rounded-full transition-colors"><Linkedin size={20} /></a>
-              <a href="https://www.youtube.com/TNAOT" className="bg-blue-800 hover:bg-blue-700 p-2 rounded-full transition-colors"><Youtube size={20} /></a>
-              <a href="https://www.instagram.com/tnaot_official/" className="bg-blue-800 hover:bg-blue-700 p-2 rounded-full transition-colors"><Instagram size={20} /></a>
-              <a href="/ContactForm" className="bg-blue-800 hover:bg-blue-700 p-2 rounded-full transition-colors"><Mail size={20} /></a>
+              <a href="https://t.me/kohthmey" className="bg-blue-800 hover:bg-blue-700 p-2 rounded-full transition-colors"><Send size={20} /></a>
             </div>
           </div>
 

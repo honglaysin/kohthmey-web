@@ -72,28 +72,6 @@ const AboutUs = () => {
     },
   ];
 
-  const leadership = [
-    {
-      name: "Sopheak Chan",
-      position: "CEO & Founder",
-      image: "https://api.dicebear.com/7.x/avataaars/svg?seed=sopheak",
-    },
-    {
-      name: "Sreypov Lim",
-      position: "CTO",
-      image: "https://api.dicebear.com/7.x/avataaars/svg?seed=sreypov",
-    },
-    {
-      name: "Dara Kem",
-      position: "Head of Product",
-      image: "https://api.dicebear.com/7.x/avataaars/svg?seed=dara",
-    },
-    {
-      name: "Pisach Ngor",
-      position: "Head of Marketing",
-      image: "https://api.dicebear.com/7.x/avataaars/svg?seed=pisach",
-    },
-  ];
   const events: {
     title: string;
     description: string;
@@ -102,20 +80,44 @@ const AboutUs = () => {
     link: string;
   }[] = [
     {
-      title: "Birthday Party 2025",
+      title: "Birthday Party 2026",
       description:
-        "Join us for a joyful celebration filled with fun, laughter, and unforgettable memories as we mark the special moments of Birthday Party 2025.",
-      date: "April 2025",
-      link: "https://www.facebook.com/tnaot.kh",
-      image: "/images/Event/event-1.jpg",
+        "Join us for a joyful celebration filled with fun, laughter, and unforgettable memories as we mark the special moments of Birthday Party 2026.",
+      date: "April 2026",
+      link: "https://www.facebook.com/share/p/1DP8WdjCKF/",
+      image: "/images/Event/birthday.jpg",
     },
     {
-      title: "Happy Women's Day",
+      title: "Happy Women's Day 2026",
       description:
         "Celebrating the strength, courage, and achievements of women around the world. Join us in honoring their inspiring journey.",
-      date: "March 2025",
-      link: "https://www.facebook.com/share/p/16oejR8od8/",
-      image: "/images/Event/event-2.jpg",
+      date: "March 2026",
+      link: "https://www.facebook.com/share/p/1RoFUbSBqW/",
+      image: "/images/Event/women-day-2026.jpg",
+    },
+    {
+      title: "Chinese New Year Events 2026",
+      description:
+        "Celebrate the vibrant traditions and festivities of Chinese New Year 2026, featuring colorful parades, cultural performances, and community events welcoming the Year of the Snake.",
+      date: "January 2026",
+      link: "https://www.facebook.com/share/p/1H95VyMpZJ/",
+      image: "/images/Event/chinese-new-year-2026.jpg",
+    },
+    {
+      title: "Koh Thmey Team Building 2026",
+      description:
+        "Strengthen bonds and build teamwork with fun activities and celebrations at Koh Thmey’s 2026 team building event.",
+      date: "April 2026",
+      link: "https://www.facebook.com/share/v/18ybMAxmtu/",
+      image: "/images/Event/team-building-2026.jpg",
+    },
+    {
+      title: "Cambodia–China Investment Exploration Tour 2026",
+      description:
+        "Cambodia–China Investment Exploration Tour 2026 is a premier business networking and investment event connecting Cambodian and Chinese enterprises to explore new opportunities, industry developments, and strategic partnerships in Cambodia’s growing coastal economy. Join industry leaders and investors in Sihanoukville on 18–19 March 2026.",
+      date: "18–19 March 2026",
+      link: "https://www.facebook.com/share/v/1UfooKA9Wn/",
+      image: "/images/Event/cciet.jpg",
     },
     {
       title: "Chinese New Year Events 2025",
@@ -126,14 +128,6 @@ const AboutUs = () => {
       image: "/images/Event/event-3.jpg",
     },
     {
-      title: "Chrismas Party 2024",
-      description:
-        "Celebrate the joy and warmth of the season at our Christmas Party 2024, filled with festive cheer, music, and holiday fun for everyone.",
-      date: "December 2024",
-      link: "https://www.facebook.com/share/p/19gu8r1zb7/",
-      image: "/images/Event/event-4.jpg",
-    },
-    {
       title: "People to People Exchange Amateur Badminton Championships 2024",
       description:
         "Join badminton enthusiasts from across the region for thrilling matches and friendly competition at the 2024 Amateur Championships.",
@@ -141,14 +135,7 @@ const AboutUs = () => {
       link: "https://www.facebook.com/tnaot.kh",
       image: "/images/Event/event-5.jpg",
     },
-    {
-      title: "Harbor Group Team Buiding Party 2023",
-      description:
-        "Strengthen bonds and build teamwork with fun activities and celebrations at Harbor Group’s 2023 team building event.",
-      date: "April 2023",
-      link: "https://www.facebook.com/share/p/177HK5ddFt/",
-      image: "/images/Event/event-6.jpg",
-    },
+    
     {
       title: "National and Career Fair 2022 at Khos Pich",
       description:
@@ -156,14 +143,6 @@ const AboutUs = () => {
       date: "October 2022",
       link: "https://www.facebook.com/share/p/19AvTSNedH/",
       image: "/images/Event/event-7.png",
-    },
-    {
-      title: "Harbor Group Annual Trip 2022",
-      description:
-        "Experience memorable moments and camaraderie during the Harbor Group’s 2022 Annual Trip filled with adventure and fun.",
-      date: "April 2022",
-      link: "https://www.facebook.com/share/p/1DubSVv3FS/",
-      image: "/images/Event/event-8.jpg",
     },
   ];
   const heroImages = [
@@ -484,13 +463,6 @@ const AboutUs = () => {
             <div className="flex flex-col items-center space-y-4">
               <div 
                 className="w-28 h-28 bg-center bg-contain bg-no-repeat"
-                style={{ backgroundImage: "url('/partner/prince.jpg')" }}
-              ></div>
-
-            </div>
-            <div className="flex flex-col items-center space-y-4">
-              <div 
-                className="w-28 h-28 bg-center bg-contain bg-no-repeat"
                 style={{ backgroundImage: "url('/partner/Smart.png')" }}
               ></div>
 
@@ -703,7 +675,7 @@ const AboutUs = () => {
                   <img
                     src={event.image}
                     alt={event.title}
-                    className="w-full h-48 object-cover rounded-t-lg"
+                    className="w-full h-56 object-contain rounded-t-lg bg-gray-100"
                   />
                   <CardContent className="flex flex-col justify-between h-full p-6">
                     <div>
