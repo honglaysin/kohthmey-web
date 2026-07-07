@@ -274,7 +274,7 @@ const ContactUs = () => {
               },
               {
                 title: "Careers",
-                email: "hr@kohthmey.net",
+                email: "hr@kohthmey.net hr@kohthmey.com",
                 phone: "Telegram : 015 856 322 (KHM&ENG) / 061 538 022 (CHN)",
               },
             ].map((contact) => (
