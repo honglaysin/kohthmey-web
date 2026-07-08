@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
@@ -15,6 +15,11 @@ import {
 } from "lucide-react";
 import { Separator } from "./ui/separator";
 import { Card } from "./ui/card";
+import {
+  createItem,
+  getPublishedItems,
+  normalizeStringArray,
+} from "@/lib/directus";
 
 interface FormData {
   name: string;
@@ -22,6 +27,41 @@ interface FormData {
   subject: string;
   message: string;
 }
+
+type ContactDepartment = {
+  title: string;
+  emails: string[];
+  phones: string[];
+};
+
+type DirectusContactDepartment = {
+  title?: string;
+  emails?: unknown;
+  phones?: unknown;
+};
+
+const defaultContactDepartments: ContactDepartment[] = [
+  {
+    title: "Customer Service",
+    emails: ["support@tnaot.com"],
+    phones: ["(+855) 023 922 788"],
+  },
+  {
+    title: "Advertising",
+    emails: ["support@tnaot.com"],
+    phones: ["(+855) 010 688 511"],
+  },
+  {
+    title: "Business",
+    emails: ["support@tnaot.com"],
+    phones: ["(+855) 010 688 511"],
+  },
+  {
+    title: "Careers",
+    emails: ["hr@kohthmey.net", "hr@kohthmey.com"],
+    phones: ["Telegram: 015 856 322 (KHM&ENG)", "061 538 022 (CHN)"],
+  },
+];
 
 const ContactUs = () => {
   const [formData, setFormData] = useState<FormData>({
@@ -35,6 +75,34 @@ const ContactUs = () => {
   const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(
     null
   );
+  const [contactDepartments, setContactDepartments] = useState<ContactDepartment[]>(
+    defaultContactDepartments
+  );
+
+  useEffect(() => {
+    const loadContactDepartments = async () => {
+      try {
+        const departments =
+          await getPublishedItems<DirectusContactDepartment>(
+            "contact_departments"
+          );
+
+        if (!departments.length) return;
+
+        setContactDepartments(
+          departments.map((department) => ({
+            title: department.title || "Contact",
+            emails: normalizeStringArray(department.emails),
+            phones: normalizeStringArray(department.phones),
+          }))
+        );
+      } catch (error) {
+        console.error("Error loading contact departments:", error);
+      }
+    };
+
+    loadContactDepartments();
+  }, []);
 
   const validateForm = () => {
     const newErrors: Partial<FormData> = {};
@@ -64,46 +132,16 @@ const ContactUs = () => {
     setIsSubmitting(true);
     setSubmitStatus(null);
     try {
-      // wrap subject and message in Strapi rich text blocks
-      const subjectBlocks = [
-        {
-          type: "paragraph",
-          children: [{ type: "text", text: formData.subject }],
-        },
-      ];
-      const messageBlocks = [
-        {
-          type: "paragraph",
-          children: [{ type: "text", text: formData.message }],
-        },
-      ];
+      await createItem("contact_messages", {
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        status: "new",
+      });
 
-      const res = await fetch(
-        "https://api.kohthmey.com/api/contact-messages",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            data: {
-              name: formData.name,
-              email: formData.email,
-              subject: subjectBlocks,
-              message: messageBlocks,
-            },
-          }),
-        }
-      );
-
-      const result = await res.json();
-      if (!res.ok) {
-        console.error("Submission error:", result);
-        setSubmitStatus("error");
-      } else {
-        setFormData({ name: "", email: "", subject: "", message: "" });
-        setSubmitStatus("success");
-      }
+      setFormData({ name: "", email: "", subject: "", message: "" });
+      setSubmitStatus("success");
     } catch (error) {
       console.error("Network error:", error);
       setSubmitStatus("error");
@@ -256,31 +294,7 @@ const ContactUs = () => {
 
           {/* Contact Categories */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-            {[
-              {
-                title: "Customer Service",
-                emails: ["support@tnaot.com"],
-                phones: ["(+855) 023 922 788"],
-              },
-              {
-                title: "Advertising",
-                emails: ["support@tnaot.com"],
-                phones: ["(+855) 010 688 511"],
-              },
-              {
-                title: "Business",
-                emails: ["support@tnaot.com"],
-                phones: ["(+855) 010 688 511"],
-              },
-              {
-                title: "Careers",
-                emails: ["hr@kohthmey.net", "hr@kohthmey.com"],
-                phones: [
-                  "Telegram: 015 856 322 (KHM&ENG)",
-                  "061 538 022 (CHN)",
-                ],
-              },
-            ].map((contact) => (
+            {contactDepartments.map((contact) => (
               <Card
                 key={contact.title}
                 className="p-6 shadow-md hover:shadow-lg transition-shadow"

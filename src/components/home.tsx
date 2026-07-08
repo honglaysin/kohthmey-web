@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import HeroSection from "./HeroSection";
 import ServiceCard from "./ServiceCard";
@@ -17,6 +17,52 @@ import {
   Linkedin,
   Youtube,
 } from "lucide-react";
+import { assetUrl, getPublishedItems } from "@/lib/directus";
+
+type NewsArticle = {
+  id: number;
+  title: string;
+  excerpt: string;
+  image: string;
+  date: string;
+  link?: string;
+};
+
+type DirectusHomepageArticle = {
+  id: number;
+  title?: string;
+  excerpt?: string;
+  image?: string | { id?: string };
+  date_label?: string;
+  link?: string;
+};
+
+const defaultNewsArticles: NewsArticle[] = [
+  {
+    id: 1,
+    title: "Koh Thmey Technology launches TNAOT App",
+    excerpt:
+      "Exciting times as Koh Thmey Technology introduces the TNAOT App, marking a significant step in its Southeast Asian expansion.",
+    image: "/images/tnaot.png",
+    date: "2018",
+  },
+  {
+    id: 2,
+    title: "TNAOT App Reaches 1 Million Users",
+    excerpt:
+      "Our flagship app celebrates a major milestone as user base continues to grow across the region.",
+    image: "/images/App/tnaot-1m.png",
+    date: "2022",
+  },
+  {
+    id: 3,
+    title: "New Partnership with Leading Telecom Provider",
+    excerpt:
+      "Strategic alliance aims to improve digital infrastructure across Cambodia.",
+    image: "/images/partner .png",
+    date: "April 10, 2023",
+  },
+];
 
 const Home = () => {
   // Mock data for services
@@ -47,36 +93,36 @@ const Home = () => {
     },
   ];
 
-  // Mock data for news articles
-  const newsArticles = [
-    {
-      id: 1,
-      title: "Koh Thmey Technology launches TNAOT App",
-      excerpt:
-        "Exciting times as Koh Thmey Technology introduces the TNAOT App, marking a significant step in its Southeast Asian expansion.",
-      image:
-        "/images/tnaot.png",
-      date: "2018",
-    },
-    {
-      id: 2,
-      title: "TNAOT App Reaches 1 Million Users",
-      excerpt:
-        "Our flagship app celebrates a major milestone as user base continues to grow across the region.",
-      image:
-        "/images/App/tnaot-1m.png",
-      date: "2022",
-    },
-    {
-      id: 3,
-      title: "New Partnership with Leading Telecom Provider",
-      excerpt:
-        "Strategic alliance aims to improve digital infrastructure across Cambodia.",
-      image:
-        "/images/partner .png",
-      date: "April 10, 2023",
-    },
-  ];
+  const [newsArticles, setNewsArticles] =
+    useState<NewsArticle[]>(defaultNewsArticles);
+
+  useEffect(() => {
+    const loadNewsArticles = async () => {
+      try {
+        const articles = await getPublishedItems<DirectusHomepageArticle>(
+          "homepage_articles",
+          { fields: "*,image.*", limit: "3" }
+        );
+
+        if (!articles.length) return;
+
+        setNewsArticles(
+          articles.map((article) => ({
+            id: article.id,
+            title: article.title || "",
+            excerpt: article.excerpt || "",
+            image: assetUrl(article.image, "/images/tnaot.png"),
+            date: article.date_label || "",
+            link: article.link,
+          }))
+        );
+      } catch (error) {
+        console.error("Error loading homepage articles:", error);
+      }
+    };
+
+    loadNewsArticles();
+  }, []);
 
   return (
     <div className="min-h-screen bg-white">
@@ -278,12 +324,28 @@ const Home = () => {
                     {article.title}
                   </h3>
                   <p className="text-gray-600 mb-4">{article.excerpt}</p>
-                  <Button
-                    variant="link"
-                    className="p-0 text-blue-700 hover:text-blue-900 flex items-center gap-1"
-                  >
-                    Read More <ArrowRight size={16} />
-                  </Button>
+                  {article.link ? (
+                    <Button
+                      asChild
+                      variant="link"
+                      className="p-0 text-blue-700 hover:text-blue-900 flex items-center gap-1"
+                    >
+                      <a
+                        href={article.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Read More <ArrowRight size={16} />
+                      </a>
+                    </Button>
+                  ) : (
+                    <Button
+                      variant="link"
+                      className="p-0 text-blue-700 hover:text-blue-900 flex items-center gap-1"
+                    >
+                      Read More <ArrowRight size={16} />
+                    </Button>
+                  )}
                 </CardContent>
               </Card>
             ))}

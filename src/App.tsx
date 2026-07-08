@@ -10,6 +10,7 @@ import ContactForm from "./components/ContactForm";
 import Header from "./components/Header";
 import Careers from "./components/Careers";
 import ScrollToTop from "./components/ScrollToTop";
+import AdminDashboard from "./components/AdminDashboard";
 function App() {
   return (
     <Suspense fallback={<p>Loading...</p>}>
@@ -23,6 +24,7 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/contactform" element={<ContactForm />} />
           <Route path="/careers" element={<Careers />} />
+          <Route path="/admin" element={<AdminDashboard />} />
         </Routes>
         {import.meta.env.VITE_TEMPO === "true" && useRoutes(routes)}
       </>

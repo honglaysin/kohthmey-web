@@ -25,5 +25,13 @@ export default defineConfig({
   server: {
     // @ts-ignore
     allowedHosts: true,
+    proxy: {
+      "/directus": {
+        target: "https://api.kohthmey.com",
+        changeOrigin: true,
+        secure: true,
+        rewrite: (path) => path.replace(/^\/directus/, ""),
+      },
+    },
   }
 });

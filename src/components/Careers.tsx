@@ -8,18 +8,47 @@ import { Label } from "./ui/label";
 import { Card } from "./ui/card";
 import { Send } from "lucide-react";
 import { Link } from "react-router-dom";
+import {
+  assetUrl,
+  createItem,
+  getPublishedItems,
+  richTextToText,
+  uploadFile,
+} from "@/lib/directus";
 
 type Job = {
   id: number;
   title: string;
   department: string;
   location: string;
-  descriptions: any[];
-  key_responsibilities: any[];
-  job_requirements: any[];
+  descriptions: unknown;
+  key_responsibilities: unknown;
+  job_requirements: unknown;
 };
 
-const benefits = [
+type Benefit = {
+  title: string;
+  description: string;
+  icon: string;
+};
+
+type DirectusJobOpening = {
+  id: number;
+  title?: string;
+  department?: string;
+  location?: string;
+  descriptions?: unknown;
+  key_responsibilities?: unknown;
+  job_requirements?: unknown;
+};
+
+type DirectusBenefit = {
+  title?: string;
+  description?: string;
+  icon?: string | { id?: string };
+};
+
+const defaultBenefits: Benefit[] = [
     { title: "NSSF", description: "", icon: "/benefits/benefit-1.png" },
     { title: "Life Insurance", description: "", icon: "/benefits/benefit-2.png" },
     { title: "In-House Health Care", description: "", icon: "/benefits/benefit-3.png" },
@@ -39,23 +68,25 @@ const benefits = [
 
 const Careers = () => {
   const [jobListings, setJobListings] = useState<Job[]>([]);
+  const [careerBenefits, setCareerBenefits] = useState<Benefit[]>(defaultBenefits);
   const [loading, setLoading] = useState(true);
+  const [selectedPosition, setSelectedPosition] = useState("");
+
+  const hasText = (value: unknown) => richTextToText(value).trim().length > 0;
 
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const res = await fetch("https://api.kohthmey.com/api/job?populate=*");
-        if (!res.ok) throw new Error("Network response not ok: " + res.status);
+        const jobsData = await getPublishedItems<DirectusJobOpening>(
+          "job_openings"
+        );
 
-        const data = await res.json();
-        console.log("Jobs API Response:", data);
-
-        if (data.data && data.data.length > 0) {
-          const jobs: Job[] = data.data.map((item: any) => ({
+        if (jobsData.length > 0) {
+          const jobs: Job[] = jobsData.map((item) => ({
             id: item.id,
-            title: item.title,
-            department: item.department,
-            location: item.location,
+            title: item.title || "",
+            department: item.department || "",
+            location: item.location || "",
             descriptions: item.descriptions || [],
             key_responsibilities: item.key_responsibilities || [],
             job_requirements: item.job_requirements || [],
@@ -71,7 +102,29 @@ const Careers = () => {
       }
     };
 
+    const fetchBenefits = async () => {
+      try {
+        const benefitsData = await getPublishedItems<DirectusBenefit>(
+          "career_benefits",
+          { fields: "*,icon.*" }
+        );
+
+        if (!benefitsData.length) return;
+
+        setCareerBenefits(
+          benefitsData.map((benefit) => ({
+            title: benefit.title || "",
+            description: benefit.description || "",
+            icon: assetUrl(benefit.icon, ""),
+          }))
+        );
+      } catch (err) {
+        console.error("Error fetching career benefits:", err);
+      }
+    };
+
     fetchJobs();
+    fetchBenefits();
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -80,58 +133,32 @@ const Careers = () => {
     const formData = new FormData(form);
 
     try {
-      // Upload resume file first
       const fileInput = form.querySelector<HTMLInputElement>("#resume");
       let uploadedFileId = null;
 
       if (fileInput?.files?.length) {
-        const fileData = new FormData();
-        fileData.append("files", fileInput.files[0]);
-
-        const uploadRes = await fetch("https://api.kohthmey.com/api/upload", {
-          method: "POST",
-          body: fileData,
-          // Add Authorization header if your API is private
-          // headers: { "Authorization": `Bearer ${YOUR_STRAPI_API_TOKEN}` }
-        });
-
-        const uploadJson = await uploadRes.json();
-        if (uploadJson && uploadJson[0] && uploadJson[0].id) {
-          uploadedFileId = uploadJson[0].id;
-        }
+        uploadedFileId = await uploadFile(fileInput.files[0]);
       }
 
-      // Submit application entry to Strapi
-      const payload = {
-        data: {
-          name: formData.get("name"),
-          email: formData.get("email"),
-          message: formData.get("message"),
-          resume: uploadedFileId ? [uploadedFileId] : [],
-        },
-      };
-
-      const res = await fetch("https://api.kohthmey.com/api/applications", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          // Add Authorization header if your collection is private
-          // "Authorization": `Bearer ${YOUR_STRAPI_API_TOKEN}`
-        },
-        body: JSON.stringify(payload),
+      await createItem("career_applications", {
+        name: formData.get("name"),
+        email: formData.get("email"),
+        phone: formData.get("phone"),
+        position: formData.get("position"),
+        message: formData.get("message"),
+        resume: uploadedFileId,
+        status: formData.get("status"),
       });
 
-      if (res.ok) {
-        alert("Application submitted successfully!");
-        form.reset();
-      } else {
-        const errData = await res.json();
-        console.error(errData);
-        alert("Error submitting application. Check console for details.");
-      }
+      alert("Application submitted successfully!");
+      form.reset();
     } catch (err) {
       console.error("Error:", err);
-      alert("An unexpected error occurred. Please try again.");
+      alert(
+        err instanceof Error
+          ? err.message
+          : "An unexpected error occurred. Please try again."
+      );
     }
   };
 
@@ -156,7 +183,7 @@ const Careers = () => {
           <p className="text-gray-600 max-w-2xl mx-auto">Discover what makes Koh Thmey Technology an exceptional workplace.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {benefits.map((b) => (
+          {careerBenefits.map((b) => (
             <Card key={b.title} className="p-6 text-center shadow-md hover:shadow-lg transition-shadow">
               <img src={b.icon} alt={b.title} className="mx-auto mb-4 h-16 w-16 object-contain" />
               <h3 className="text-xl font-bold text-gray-900 mb-2">{b.title}</h3>
@@ -182,35 +209,38 @@ const Careers = () => {
                 <h3 className="text-xl font-bold text-gray-900">{job.title}</h3>
                 <p className="text-gray-600 mb-2">{job.department} | {job.location}</p>
 
-                {job.descriptions.length > 0 && (
+                {hasText(job.descriptions) && (
                   <div className="mb-4">
                     <h4 className="font-semibold text-gray-800">Description:</h4>
                     <p className="text-gray-700 whitespace-pre-line">
-                      {job.descriptions.map((d: any) => d.children.map((c: any) => c.text).join(" ")).join("\n")}
+                      {richTextToText(job.descriptions)}
                     </p>
                   </div>
                 )}
 
-                {job.key_responsibilities.length > 0 && (
+                {hasText(job.key_responsibilities) && (
                   <div className="mb-4">
                     <h4 className="font-semibold text-gray-800">Key Responsibilities:</h4>
                     <p className="text-gray-700 whitespace-pre-line">
-                      {job.key_responsibilities.map((d: any) => d.children.map((c: any) => c.text).join(" ")).join("\n")}
+                      {richTextToText(job.key_responsibilities)}
                     </p>
                   </div>
                 )}
 
-                {job.job_requirements.length > 0 && (
+                {hasText(job.job_requirements) && (
                   <div>
                     <h4 className="font-semibold text-gray-800">Job Requirements:</h4>
                     <p className="text-gray-700 whitespace-pre-line">
-                      {job.job_requirements.map((d: any) => d.children.map((c: any) => c.text).join(" ")).join("\n")}
+                      {richTextToText(job.job_requirements)}
                     </p>
                   </div>
                 )}
 
               <a href="#application-form">
-                <Button className="mt-4 bg-[#FACC15] text-black hover:bg-[#EAB308] font-medium">
+                <Button
+                  className="mt-4 bg-[#FACC15] text-black hover:bg-[#EAB308] font-medium"
+                  onClick={() => setSelectedPosition(job.title)}
+                >
                   Apply
                 </Button>
               </a>
@@ -249,6 +279,28 @@ const Careers = () => {
               <Input id="email" name="email" type="email" required />
             </div>
             <div className="space-y-2">
+              <Label htmlFor="phone">Phone *</Label>
+              <Input id="phone" name="phone" type="tel" required />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="position">Position *</Label>
+              <select
+                id="position"
+                name="position"
+                required
+                value={selectedPosition}
+                onChange={(event) => setSelectedPosition(event.target.value)}
+                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              >
+                <option value="">Select a position</option>
+                {jobListings.map((job) => (
+                  <option key={job.id} value={job.title}>
+                    {job.title}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="space-y-2">
               <Label htmlFor="resume">Resume *</Label>
               <Input id="resume" name="resume" type="file" required />
             </div>
@@ -256,6 +308,7 @@ const Careers = () => {
               <Label htmlFor="message">Message</Label>
               <Textarea id="message" name="message" />
             </div>
+            <input type="hidden" name="status" value="new" />
             <Button type="submit" className="w-full bg-[#1E40AF] hover:bg-[#1E3A8A] text-white font-medium flex items-center justify-center gap-2">
               <Send className="h-4 w-4" /> Submit Application
             </Button>

@@ -9,6 +9,36 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Footer from "./Footer";
 import { Link } from "react-router-dom";
+import { assetUrl, getPublishedItems } from "@/lib/directus";
+
+type EventItem = {
+  title: string;
+  description: string;
+  date: string;
+  image: string;
+  link: string;
+};
+
+type DirectusCompanyEvent = {
+  title?: string;
+  description?: string;
+  date_label?: string;
+  event_date?: string;
+  image?: string | { id?: string };
+  link?: string;
+};
+
+type PartnerItem = {
+  name: string;
+  logo: string;
+  websiteUrl?: string;
+};
+
+type DirectusPartner = {
+  name?: string;
+  logo?: string | { id?: string };
+  website_url?: string;
+};
 
 const AboutUs = () => {
   const values = [
@@ -72,13 +102,15 @@ const AboutUs = () => {
     },
   ];
 
-  const events: {
-    title: string;
-    description: string;
-    date: string;
-    image: string;
-    link: string;
-  }[] = [
+  const defaultEvents: EventItem[] = [
+    {
+      title: "Happy Dragon Boat Festival 2026",
+      description:
+        "Join us for a joyful celebration filled with fun, laughter, and unforgettable memories as we mark the special moments of Happy Dragon Boat Festival 2026.",
+      date: "June 2026",
+      link: "https://www.facebook.com/share/p/1E5jcekLfW/",
+      image: "/images/Event/dragon-boat-festival-2026.jpg",
+    },
     {
       title: "Birthday Party 2026",
       description:
@@ -153,6 +185,8 @@ const AboutUs = () => {
     "/images/About%20Us/img5.jpg",
   ];
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [events, setEvents] = useState<EventItem[]>([]);
+  const [partners, setPartners] = useState<PartnerItem[]>([]);
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % heroImages.length);
@@ -160,6 +194,57 @@ const AboutUs = () => {
 
     return () => clearInterval(interval); // cleanup on unmount
   }, [heroImages.length]);
+
+  useEffect(() => {
+    const loadEvents = async () => {
+      try {
+        const items = await getPublishedItems<DirectusCompanyEvent>(
+          "company_events",
+          { fields: "*,image.*" }
+        );
+
+        if (!items.length) return;
+
+        setEvents(
+          items.map((item) => ({
+            title: item.title || "",
+            description: item.description || "",
+            date: item.date_label || item.event_date || "",
+            image: assetUrl(item.image, "/images/Event/event-3.jpg"),
+            link: item.link || "#",
+          }))
+        );
+      } catch (error) {
+        console.error("Error loading company events:", error);
+      }
+    };
+
+    loadEvents();
+  }, []);
+
+  useEffect(() => {
+    const loadPartners = async () => {
+      try {
+        const items = await getPublishedItems<DirectusPartner>("partners", {
+          fields: "*,logo.*",
+        });
+
+        setPartners(
+          items
+            .map((item) => ({
+              name: item.name || "Partner",
+              logo: assetUrl(item.logo, ""),
+              websiteUrl: item.website_url,
+            }))
+            .filter((partner) => partner.logo)
+        );
+      } catch (error) {
+        console.error("Error loading partners:", error);
+      }
+    };
+
+    loadPartners();
+  }, []);
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
@@ -378,6 +463,40 @@ const AboutUs = () => {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <h3 className="text-3xl font-bold text-center mb-12">Our Partners</h3>
+          {partners.length > 0 && (
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center justify-items-center">
+              {partners.map((partner) => {
+                const logo = (
+                  <img
+                    src={partner.logo}
+                    alt={partner.name}
+                    className="h-28 w-28 object-contain"
+                  />
+                );
+
+                return (
+                  <div
+                    key={`${partner.name}-${partner.logo}`}
+                    className="flex flex-col items-center space-y-4"
+                  >
+                    {partner.websiteUrl ? (
+                      <a
+                        href={partner.websiteUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={partner.name}
+                      >
+                        {logo}
+                      </a>
+                    ) : (
+                      logo
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          )}
+          {partners.length === 0 && (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center justify-items-center">
             
             {/* Partner Card Example */}
@@ -647,6 +766,7 @@ const AboutUs = () => {
             
             
           </div>
+          )}
         </div>
       </section>
 
@@ -663,8 +783,9 @@ const AboutUs = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {events.map((event, index) => (
+          {events.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {events.map((event, index) => (
               <motion.div
                 key={event.title}
                 initial={{ opacity: 0, y: 20 }}
@@ -704,8 +825,13 @@ const AboutUs = () => {
                   </CardContent>
                 </Card>
               </motion.div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <p className="text-center text-gray-600">
+              No published events are available at the moment.
+            </p>
+          )}
         </div>
       </section>
 
