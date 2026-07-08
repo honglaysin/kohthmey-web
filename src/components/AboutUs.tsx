@@ -4,7 +4,16 @@ import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 import { Separator } from "./ui/separator";
 import { motion } from "framer-motion";
-import { Facebook, Linkedin, Youtube, MapPin, Phone, Mail } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Facebook,
+  Linkedin,
+  Youtube,
+  MapPin,
+  Phone,
+  Mail,
+} from "lucide-react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Footer from "./Footer";
@@ -39,6 +48,19 @@ type DirectusPartner = {
   logo?: string | { id?: string };
   website_url?: string;
 };
+
+type DirectusAboutHeroImage = {
+  title?: string;
+  image?: string | { id?: string };
+};
+
+const defaultHeroImages = [
+  "/images/About%20Us/img1.jpg",
+  "/images/About%20Us/img2.jpg",
+  "/images/About%20Us/img3.jpg",
+  "/images/About%20Us/img4.jpg",
+  "/images/About%20Us/img5.jpg",
+];
 
 const AboutUs = () => {
   const values = [
@@ -177,17 +199,48 @@ const AboutUs = () => {
       image: "/images/Event/event-7.png",
     },
   ];
-  const heroImages = [
-    "/images/About%20Us/img1.jpg",
-    "/images/About%20Us/img2.jpg",
-    "/images/About%20Us/img3.jpg",
-    "/images/About%20Us/img4.jpg",
-    "/images/About%20Us/img5.jpg",
-  ];
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [heroImages, setHeroImages] = useState<string[]>(defaultHeroImages);
   const [events, setEvents] = useState<EventItem[]>([]);
   const [partners, setPartners] = useState<PartnerItem[]>([]);
+
+  const goToPreviousHero = () => {
+    setCurrentIndex((index) =>
+      index === 0 ? heroImages.length - 1 : index - 1
+    );
+  };
+
+  const goToNextHero = () => {
+    setCurrentIndex((index) => (index + 1) % heroImages.length);
+  };
+
   useEffect(() => {
+    const loadHeroImages = async () => {
+      try {
+        const items = await getPublishedItems<DirectusAboutHeroImage>(
+          "about_hero_images",
+          { fields: "*,image.*" }
+        );
+
+        const images = items
+          .map((item) => assetUrl(item.image, ""))
+          .filter(Boolean);
+
+        if (images.length) {
+          setHeroImages(images);
+          setCurrentIndex(0);
+        }
+      } catch (error) {
+        console.error("Error loading about hero images:", error);
+      }
+    };
+
+    loadHeroImages();
+  }, []);
+
+  useEffect(() => {
+    if (!heroImages.length) return;
+
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % heroImages.length);
     }, 5000); // change image every 3 seconds
@@ -251,23 +304,26 @@ const AboutUs = () => {
       <Header />
 
       {/* Hero Section */}
-    <section className="relative min-h-screen text-white flex items-center justify-center">
-        {/* Background Images */}
-
-        {heroImages.map((img, index) => (
-          <motion.img
-            key={index}
-            src={img}
-            alt={`Hero ${index}`}
-            className="absolute inset-0 w-full h-full object-cover"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: index === currentIndex ? 1 : 0 }}
-            transition={{ duration: 1 }}
-          />
-        ))}
+      <section className="relative min-h-screen overflow-hidden text-white">
+        {/* Background Slider */}
+        <motion.div
+          className="absolute inset-0 flex h-full"
+          animate={{ x: `-${currentIndex * 100}%` }}
+          transition={{ duration: 0.7, ease: "easeInOut" }}
+        >
+          {heroImages.map((img, index) => (
+            <img
+              key={`${img}-${index}`}
+              src={img}
+              alt={`Hero ${index + 1}`}
+              className="h-full min-w-full object-cover"
+            />
+          ))}
+        </motion.div>
+        <div className="absolute inset-0 bg-black/35" />
 
         {/* Text Overlay */}
-        <div className="relative text-center px-4 z-10">
+        <div className="absolute bottom-[30%] left-1/2 z-10 w-full -translate-x-1/2 px-4 text-center">
           <motion.h1
             className="text-4xl md:text-6xl font-bold mb-4"
             initial={{ opacity: 0, y: 20 }}
@@ -285,6 +341,45 @@ const AboutUs = () => {
             Driving Cambodia’s digital future with creativity and integrity
           </motion.p>
         </div>
+        {heroImages.length > 1 && (
+          <>
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              onClick={goToPreviousHero}
+              className="absolute left-4 top-1/2 z-20 h-11 w-11 -translate-y-1/2 rounded-full bg-black/35 text-white hover:bg-black/55 hover:text-white"
+              aria-label="Previous hero image"
+            >
+              <ChevronLeft size={24} />
+            </Button>
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              onClick={goToNextHero}
+              className="absolute right-4 top-1/2 z-20 h-11 w-11 -translate-y-1/2 rounded-full bg-black/35 text-white hover:bg-black/55 hover:text-white"
+              aria-label="Next hero image"
+            >
+              <ChevronRight size={24} />
+            </Button>
+            <div className="absolute bottom-10 left-1/2 z-20 flex -translate-x-1/2 gap-2">
+              {heroImages.map((img, index) => (
+                <button
+                  key={`${img}-${index}`}
+                  type="button"
+                  onClick={() => setCurrentIndex(index)}
+                  className={`h-2.5 rounded-full transition-all ${
+                    index === currentIndex
+                      ? "w-8 bg-white"
+                      : "w-2.5 bg-white/55 hover:bg-white/80"
+                  }`}
+                  aria-label={`Go to hero image ${index + 1}`}
+                />
+              ))}
+            </div>
+          </>
+        )}
       </section>
       {/* Hero Section End */}
 

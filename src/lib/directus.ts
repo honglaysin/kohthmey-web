@@ -13,6 +13,11 @@ type DirectusItemResponse<T> = {
   data?: T;
 };
 
+type DirectusUploadResponse = {
+  data?: { id?: string } | { id?: string }[];
+  id?: string;
+};
+
 async function readJsonOrNull<T>(response: Response): Promise<T | null> {
   const text = await response.text();
   if (!text.trim()) return null;
@@ -133,10 +138,18 @@ export async function uploadFile(file: File) {
     );
   }
 
-  const result = await readJsonOrNull<DirectusItemResponse<{ id: string }>>(
-    response
-  );
-  return result?.data?.id || null;
+  const result = await readJsonOrNull<DirectusUploadResponse>(response);
+  const fileId = Array.isArray(result?.data)
+    ? result.data[0]?.id
+    : result?.data?.id || result?.id;
+
+  if (!fileId) {
+    throw new Error(
+      "CV upload reached Directus, but Directus did not return the file id. In Directus Public Policy, enable Read for directus_files and allow the id field, then submit again."
+    );
+  }
+
+  return fileId;
 }
 
 export function assetUrl(

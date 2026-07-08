@@ -134,11 +134,13 @@ const Careers = () => {
 
     try {
       const fileInput = form.querySelector<HTMLInputElement>("#resume");
-      let uploadedFileId = null;
+      const resumeFile = fileInput?.files?.[0];
 
-      if (fileInput?.files?.length) {
-        uploadedFileId = await uploadFile(fileInput.files[0]);
+      if (!resumeFile) {
+        throw new Error("Please upload your CV before submitting.");
       }
+
+      const uploadedFileId = await uploadFile(resumeFile);
 
       await createItem("career_applications", {
         name: formData.get("name"),
@@ -147,7 +149,8 @@ const Careers = () => {
         position: formData.get("position"),
         message: formData.get("message"),
         resume: uploadedFileId,
-        status: formData.get("status"),
+        status: "new",
+        submitted_at: new Date().toISOString(),
       });
 
       alert("Application submitted successfully!");
@@ -302,7 +305,13 @@ const Careers = () => {
             </div>
             <div className="space-y-2">
               <Label htmlFor="resume">Resume *</Label>
-              <Input id="resume" name="resume" type="file" required />
+              <Input
+                id="resume"
+                name="resume"
+                type="file"
+                accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                required
+              />
             </div>
             <div className="space-y-2">
               <Label htmlFor="message">Message</Label>
