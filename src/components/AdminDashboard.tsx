@@ -21,6 +21,7 @@ import {
   Download,
   Youtube,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import Header from "./Header";
 import Footer from "./Footer";
 import { Button } from "./ui/button";
@@ -69,7 +70,7 @@ type CollectionConfig = {
   title: string;
   description: string;
   collection: string;
-  icon: React.ComponentType<{ size?: number; className?: string }>;
+  icon: LucideIcon;
   fields: FieldConfig[];
   readOnly?: boolean;
 };
