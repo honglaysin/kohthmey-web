@@ -46,8 +46,55 @@ type PartnerItem = {
 type DirectusPartner = {
   name?: string;
   logo?: string | { id?: string };
+  website?: string;
   website_url?: string;
 };
+
+type GovernmentLogoItem = {
+  name: string;
+  logo: string;
+  websiteUrl?: string;
+};
+
+// Static government and institution logos stored in public/images/Government.
+const governmentLogos: GovernmentLogoItem[] = [
+  {
+    name: "Ministry of Information",
+    logo: "/images/Government/MI.png",
+  },
+  {
+    name: "Ministry of Education, Youth and Sport",
+    logo: "/images/Government/MoEYS-Cambodia.png",
+  },
+  {
+    name: "Ministry of Tourism",
+    logo: "/images/Government/MT.png",
+  },
+  {
+    name: "Ministry of Culture and Fine Arts",
+    logo: "/images/Government/MFA.png",
+  },
+  {
+    name: "Ministry of Economy and Finance",
+    logo: "/images/Government/Ministry-of-Economy-and-Finance.jpg",
+  },
+  {
+    name: "China Embassy in Cambodia",
+    logo: "/images/Government/China%20embassy.png",
+  },
+  {
+    name: "Cambodia Basketball Federation",
+    logo: "/images/Government/Cambodia_Basketball_Federation.jpg",
+  },
+  {
+    name: "Cambodia Badminton Federation",
+    logo: "/images/Government/Badminton.png",
+  },
+  {
+    name: "Preah Sihanouk Province Governor",
+    logo: "/images/Government/SHV.png",
+  },
+];
 
 type DirectusAboutHeroImage = {
   title?: string;
@@ -287,7 +334,7 @@ const AboutUs = () => {
             .map((item) => ({
               name: item.name || "Partner",
               logo: assetUrl(item.logo, ""),
-              websiteUrl: item.website_url,
+              websiteUrl: item.website_url || item.website,
             }))
             .filter((partner) => partner.logo)
         );
@@ -298,6 +345,7 @@ const AboutUs = () => {
 
     loadPartners();
   }, []);
+
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
@@ -553,26 +601,89 @@ const AboutUs = () => {
           </div>
         </div>
       </section>
+
+      {/* Government Partners */}
+      {governmentLogos.length > 0 && (
+        <section className="bg-white py-16">
+          <div className="container mx-auto px-4">
+            <h3 className="mb-12 text-center text-3xl font-bold">
+              Government Partners
+            </h3>
+            <div className="mx-auto flex max-w-[1100px] flex-wrap items-start justify-center gap-x-6 gap-y-10">
+              {governmentLogos.map((item) => {
+                const logo = (
+                  <img
+                    src={item.logo}
+                    alt={`${item.name} logo`}
+                    className="max-h-36 max-w-full object-contain"
+                    loading="lazy"
+                  />
+                );
+
+                return (
+                  <div
+                    key={`${item.name}-${item.logo}`}
+                    className="flex w-[140px] flex-col items-center sm:w-[170px] lg:w-[190px]"
+                  >
+                    <div className="flex h-36 w-full items-center justify-center px-2">
+                      {item.websiteUrl ? (
+                        <a
+                          href={item.websiteUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`Visit ${item.name}`}
+                          className="flex h-full w-full items-center justify-center transition-transform duration-200 hover:scale-105"
+                        >
+                          {logo}
+                        </a>
+                      ) : (
+                        logo
+                      )}
+                    </div>
+                    <p className="mt-3 min-h-10 text-center text-xs font-bold uppercase leading-4 text-slate-700 sm:text-sm">
+                      {item.name}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Partner */}
       
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <h3 className="text-3xl font-bold text-center mb-12">Our Partners</h3>
           {partners.length > 0 && (
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center justify-items-center">
+            <div className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-center gap-x-8 gap-y-10">
               {partners.map((partner) => {
                 const logo = (
                   <img
                     src={partner.logo}
                     alt={partner.name}
-                    className="h-28 w-28 object-contain"
+                    className="max-h-28 max-w-full object-contain transition-transform duration-200"
+                    loading="lazy"
+                    onLoad={(event) => {
+                      const image = event.currentTarget;
+                      const aspectRatio = image.naturalWidth / image.naturalHeight;
+
+                      // Landscape logos need more visual weight than square marks.
+                      image.style.transform =
+                        aspectRatio >= 2.5
+                          ? "scale(1.3)"
+                          : aspectRatio >= 1.5
+                            ? "scale(1.15)"
+                            : "scale(1)";
+                    }}
                   />
                 );
 
                 return (
                   <div
                     key={`${partner.name}-${partner.logo}`}
-                    className="flex flex-col items-center space-y-4"
+                    className="flex h-32 w-[140px] items-center justify-center px-2 sm:w-[170px]"
                   >
                     {partner.websiteUrl ? (
                       <a
@@ -580,6 +691,7 @@ const AboutUs = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={partner.name}
+                        className="flex h-full w-full items-center justify-center transition-transform duration-200 hover:scale-105"
                       >
                         {logo}
                       </a>
@@ -592,7 +704,7 @@ const AboutUs = () => {
             </div>
           )}
           {partners.length === 0 && (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center justify-items-center">
+          <div className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-center gap-x-8 gap-y-10 [&>div]:h-32 [&>div]:w-[140px] [&>div]:justify-center [&>div]:px-2 sm:[&>div]:w-[170px] [&>div>div]:!h-28 [&>div>div]:!w-full">
             
             {/* Partner Card Example */}
             <div className="flex flex-col items-center space-y-4">
@@ -864,7 +976,6 @@ const AboutUs = () => {
           )}
         </div>
       </section>
-
 
       {/* Company Events */}
       <section className="py-20 px-4 md:px-8 lg:px-16 bg-gray-50">

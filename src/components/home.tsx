@@ -59,7 +59,7 @@ const defaultNewsArticles: NewsArticle[] = [
     title: "New Partnership with Leading Telecom Provider",
     excerpt:
       "Strategic alliance aims to improve digital infrastructure across Cambodia.",
-    image: "/images/partner .png",
+    image: "/images/Group/Company Introduction 2026 (EN)_Page_6.jpg",
     date: "April 10, 2023",
   },
 ];
