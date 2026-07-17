@@ -870,9 +870,6 @@ const AdminDashboard = () => {
                 <Lock size={24} />
               </div>
               <CardTitle>Admin Login</CardTitle>
-              <CardDescription>
-                Log in with your Directus account to manage website content.
-              </CardDescription>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleLogin} className="space-y-4">
