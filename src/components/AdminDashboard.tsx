@@ -453,6 +453,10 @@ const AdminDashboard = () => {
         limit: "100",
       });
 
+      if (isCareerApplications(activeCollection)) {
+        params.set("sort", "-submitted_at");
+      }
+
       const response = await fetch(
         `${DIRECTUS_URL}/items/${activeCollection.collection}?${params.toString()}`,
         {
