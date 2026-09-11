@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "./ui/button";
 
@@ -59,15 +59,20 @@ const Header = ({
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-6">
           {navLinks.map((link) => (
-            <Link
+            <NavLink
               key={link.title}
               to={link.href}
-              className={`font-medium hover:text-[#1E40AF] transition-colors ${
-                isScrolled ? "text-gray-800" : "text-gray-900"
-              }`}
+              end={link.href === "/"}
+              className={({ isActive }) =>
+                `font-medium hover:text-[#1E40AF] transition-colors ${
+                  isActive
+                    ? "text-[#1E40AF] underline underline-offset-8 decoration-2"
+                    : isScrolled ? "text-gray-800" : "text-gray-900"
+                }`
+              }
             >
               {link.title}
-            </Link>
+            </NavLink>
           ))}
           <Link to="/contactform" className="hidden md:inline-block">
             <Button className="bg-[#1E40AF] hover:bg-[#1E40AF]/90 text-white ml-4">
@@ -91,14 +96,21 @@ const Header = ({
         <div className="md:hidden bg-white shadow-lg">
           <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
             {navLinks.map((link) => (
-              <Link
+              <NavLink
                 key={link.title}
                 to={link.href}
-                className="text-gray-900 font-medium hover:text-[#1E40AF] transition-colors py-2"
+                end={link.href === "/"}
+                className={({ isActive }) =>
+                  `font-medium hover:text-[#1E40AF] transition-colors py-2 ${
+                    isActive
+                      ? "text-[#1E40AF] underline underline-offset-8 decoration-2"
+                      : "text-gray-900"
+                  }`
+                }
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.title}
-              </Link>
+              </NavLink>
             ))}
             <Button
               className="bg-[#1E40AF] hover:bg-[#1E40AF]/90 text-white w-full"

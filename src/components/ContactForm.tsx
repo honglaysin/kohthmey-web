@@ -337,11 +337,11 @@ const ContactUs = () => {
       {/* Google Map */}
       <div className="mt-12 w-full h-80 md:h-96 rounded-lg overflow-hidden shadow-md">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d565.9863493451629!2d104.92969849675013!3d11.544271094967597!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3109517a45a7bed5%3A0xd8a2ae37461e456b!2sKohthmey%20Technology%20Co%2C.Ltd!5e0!3m2!1skm!2skh!4v1756973984208!5m2!1skm!2skh"
+          src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d534.0994529706497!2d104.93058513914185!3d11.54657680764225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTHCsDMyJzQ3LjgiTiAxMDTCsDU1JzUwLjQiRQ!5e1!3m2!1sen!2skh!4v1789109972142!5m2!1sen!2skh"
           className="w-full h-full border-0"
           allowFullScreen
           loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
+          referrerPolicy="strict-origin-when-cross-origin"
         ></iframe>
       </div>
 

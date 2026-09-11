@@ -28,7 +28,7 @@ const Footer = () => {
                 <svg className="h-5 w-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                <span className="text-blue-100">(+855) 023922788</span>
+                <span className="text-blue-100">(+855) 023 922 788</span>
               </div>
               <div className="flex items-center space-x-2">
                 <svg className="h-5 w-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -42,7 +42,7 @@ const Footer = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
                 <span className="text-blue-100">
-                  Lot No.358, Samdach Sothearos Blvd, Phum 8, Sangkat Tonle Bassac, Khan Chamkarmon, Phnom Penh
+                  No.85, Samdach Sothearous Blvd, Sangkat Tonle Bassac, Khan Chamkarmon, Phnom Penh, Cambodia
                 </span>
               </div>
             </div>
