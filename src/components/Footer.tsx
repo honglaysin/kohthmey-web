@@ -72,7 +72,7 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4 text-white">Core Services</h3>
             <ul className="space-y-2">
-              <li><a href="#media" className="text-blue-100 hover:text-white transition-colors">Media Publishing</a></li>
+              <li><a href="https://www.tnaot.app/" className="text-blue-100 hover:text-white transition-colors">Media Publishing</a></li>
               <li><a href="#events" className="text-blue-100 hover:text-white transition-colors">Event Planning</a></li>
               <li><a href="#video" className="text-blue-100 hover:text-white transition-colors">Video Production</a></li>
               <li><a href="#social" className="text-blue-100 hover:text-white transition-colors">Social Media</a></li>
